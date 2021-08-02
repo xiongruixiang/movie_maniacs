@@ -13,6 +13,7 @@ export default class Login extends Component {
     return (
       <div>
           Login page
+          Test
       </div>
     );
   }
