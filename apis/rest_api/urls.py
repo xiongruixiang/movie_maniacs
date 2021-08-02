@@ -6,5 +6,5 @@ from django.urls import path
 from apis.rest_api import views
 
 urlpatterns = [
-    path('message/', views.get_message, name='get_message'),
+    path('login/', views.LoginView.as_view(), name='login')
 ]
