@@ -15,7 +15,7 @@ export default class Login extends Component {
     return (
       <div className='login'>
 
-        <div className='header'>
+        <div className='loginHeader'>
           <br />
           <p>Log in</p>
         </div>
@@ -34,7 +34,7 @@ export default class Login extends Component {
         iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
         />
 
-        <div className='link'>
+        <div className='forgetPassword'>
           <Button type="link">Forget your password?</Button>
           <br />
           <br />
@@ -44,12 +44,10 @@ export default class Login extends Component {
         <br />
         <br />
 
-        <div className='signup'>
-          <p>
-            Don't have an account?
-            <Button type="link">Sign up.</Button>
-          </p>
-        </div>
+        <p>
+          Don't have an account?
+          <Button type="link">Sign up.</Button>
+        </p>
 
       </div>
     );

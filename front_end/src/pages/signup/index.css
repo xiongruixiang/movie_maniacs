@@ -1,0 +1,11 @@
+.signup {
+    margin: auto;
+    width: 30%;
+    text-align: center;
+}
+
+.signupHeader {
+    font-family:"Times New Roman";
+    font-size: 30px;
+    font-weight: bold;
+}
