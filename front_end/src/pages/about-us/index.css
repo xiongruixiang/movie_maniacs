@@ -1,0 +1,45 @@
+.titleAboutUs{
+    position:relative;
+    top:50px;
+    font-size: 40px;
+    color:firebrick;
+    text-align:center;
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+
+.teamName{
+    position:relative;
+    top:50px;
+    font-size: 20px;
+    color:firebrick;
+    text-align:center;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.email{
+    position:relative;
+    top:80px;
+    font-size: 20px;
+    color:rgb(82, 48, 48);
+    
+    text-align:center;
+    
+    /* font-style: italic; */
+    font-weight: bold;
+
+}
+
+.contact{
+    position:relative;
+    top:100px;
+    font-size: 30px;
+    color:black;
+    text-align:center;
+    /* font-style: italic; */
+    font-weight: bold;
+
+}
