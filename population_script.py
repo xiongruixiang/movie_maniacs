@@ -7,82 +7,67 @@ from apis.models import Movie, Category, UserProfile
 
 def populate():
 
-    animation_list = [
+    comedy_list = [
         {
-            'movie_name': 'Coco',
-            'director': 'Lee Unkrich & Adrian Molina',
-            'leading_actor': 'Anthony Gonzalez(voice) Gael García Bernal(voice) Benjamin Bratt(voice)',
-            'country_of_production': 'United States & Mexico',
-            'language': 'English Spanish',
-            'release_data': '2017',
-            'length': '1h 45min',
-            'rating': 8.4,
-            'image': '../../media/coco.jpeg',
-            'introduction': "Aspiring musician Miguel, confronted with his family's ancestral ban on music, enters the Land of the Dead to find his great-great-grandfather, a legendary singer."
-        },
-        {
-            'movie_name': 'Megamind',
-            'director': 'Tom McGrath',
-            'leading_actor': 'Will Ferrell(voice) Jonah Hill (voice) Brad Pitt(voice)',
+            'movie_name': 'The Suicide Squad',
+            'director': 'James Gunn',
+            'leading_actor': 'Margot Robbie & Idris Elba & John Cena',
             'country_of_production': 'United States',
             'language': 'English',
-            'release_data': '2010',
-            'length': '1h 35min',
-            'rating': 7.2,
-            'image': '../../media/coco.jpeg',
-            'introduction': 'Evil genius Megamind finally defeats his do-gooder nemesis, Metro Man, but is left without a purpose in a superhero-free world.'
-        },
-        {
-            'movie_name': 'Zootopia',
-            'director': 'Byron Howard & Rich Moore & Jared Bush',
-            'leading_actor': 'Ginnifer Goodwin(voice) Jason Bateman(voice) Idris Elba(voice)',
-            'country_of_production': 'United States',
-            'language': 'English',
-            'release_data': '2016',
-            'length': '1h 48min',
+            'release_data': '2021',
+            'length': '2h 12min',
             'rating': 8.0,
-            'image': '../../media/coco.jpeg',
-            'introduction': 'In a city of anthropomorphic animals, a rookie bunny cop and a cynical con artist fox must work together to uncover a conspiracy.'
-        },
+            'image': '../../media/the-suicide-squad.jpeg',
+            'introduction': 'Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.'
+        }
+    ]
+
+    thriller_list = [
         {
-            'movie_name': 'The Lion King',
-            'director': 'Jon Favreau',
-            'leading_actor': 'Donald Glover(voice) Beyoncé(voice) Seth Rogen(voice)',
+            'movie_name': 'Old',
+            'director': 'M. Night Shyamalan',
+            'leading_actor': 'Gael García Bernal & Vicky Krieps & Rufus Sewell',
             'country_of_production': 'United States',
-            'language': 'English Xhosa Zulu French Spanish Hindi',
-            'release_data': '2019',
-            'length': '1h 58min',
-            'rating': 6.8,
-            'image': '../../media/coco.jpeg',
-            'introduction': 'After the murder of his father, a young lion prince flees his kingdom only to learn the true meaning of responsibility and bravery.'
-        },
+            'language': 'English',
+            'release_data': '2021',
+            'length': '1h 48min',
+            'rating': 6.0,
+            'image': '../../media/old.jpeg',
+            'introduction': "A vacationing family discovers that the secluded beach where they're relaxing for a few hours is somehow causing them to age rapidly, reducing their entire lives into a single day."
+        }
+    ]
+
+    romance_list = [
+        {
+            'movie_name': 'Twilight',
+            'director': 'Catherine Hardwicke',
+            'leading_actor': 'Kristen Stewart & Robert Pattinson & Billy Burke',
+            'country_of_production': 'United States',
+            'language': 'English',
+            'release_data': '2008',
+            'length': '2h 2min',
+            'rating': 5.2,
+            'image': '../../media/twilight.jpeg',
+            'introduction': "When Bella Swan moves to a small town in the Pacific Northwest, she falls in love with Edward Cullen, a mysterious classmate who reveals himself to be a 108-year-old vampire."
+        }
+    ]
+
+    horror_list = [
+        {
+            'movie_name': 'Blood Red Sky',
+            'director': 'Peter Thorwarth',
+            'leading_actor': 'Peri Baumeister & Carl Anton Koch & Alexander Scheer',
+            'country_of_production': 'Germany & United State',
+            'language': 'German English Arabic',
+            'release_data': '2021',
+            'length': '2h 1min',
+            'rating': 6.1,
+            'image': '../../media/blood-red-sky.jpeg',
+            'introduction': "A woman with a mysterious illness is forced into action when a group of terrorists attempt to hijack a transatlantic overnight flight."
+        }
     ]
 
     action_list = [
-        {
-            'movie_name': 'Black Widow',
-            'director': 'Cate Shortland',
-            'leading_actor': 'Scarlett Johansson & Florence Pugh & David Harbour',
-            'country_of_production': 'United States',
-            'language': 'English Russian Norwegian Hungarian Macedonian Finnish',
-            'release_data': '2021',
-            'length': '2h 14min',
-            'rating': 6.9,
-            'image': '../../media/coco.jpeg',
-            'introduction': 'Natasha Romanoff confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises.'
-        },
-        {
-            'movie_name': 'F9',
-            'director': 'Justin Lin',
-            'leading_actor': 'Vin Diesel & Michelle Rodriguez & Jordana Brewster',
-            'country_of_production': 'United States Thailand Canada',
-            'language': 'English',
-            'release_data': '2021',
-            'length': '2h 23min',
-            'rating': 5.3,
-            'image': '../../media/coco.jpeg',
-            'introduction': "Dom and the crew must take on an international terrorist who turns out to be Dom and Mia's estranged brother."
-        },
         {
             'movie_name': 'Tenet',
             'director': 'Christopher Nolan',
@@ -92,14 +77,45 @@ def populate():
             'release_data': '2020',
             'length': '2h 30min',
             'rating': 7.4,
-            'image': '../../media/coco.jpeg',
+            'image': '../../media/tenet.jpeg',
             'introduction': 'Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.'
+        },
+        {
+            'movie_name': 'Black Widow',
+            'director': 'Cate Shortland',
+            'leading_actor': 'Scarlett Johansson & Florence Pugh & David Harbour',
+            'country_of_production': 'United States',
+            'language': 'English Russian Norwegian Hungarian Macedonian Finnish',
+            'release_data': '2021',
+            'length': '2h 14min',
+            'rating': 6.9,
+            'image': '../../media/black-widow.jpeg',
+            'introduction': 'Natasha Romanoff confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises.'
+        }
+    ]
+
+    crime_list = [
+        {
+            'movie_name': 'F9',
+            'director': 'Justin Lin',
+            'leading_actor': 'Vin Diesel & Michelle Rodriguez & Jordana Brewster',
+            'country_of_production': 'United States Thailand Canada',
+            'language': 'English',
+            'release_data': '2021',
+            'length': '2h 23min',
+            'rating': 5.3,
+            'image': '../../media/f9.jpeg',
+            'introduction': "Dom and the crew must take on an international terrorist who turns out to be Dom and Mia's estranged brother."
         }
     ]
 
     cats = {
-        'Animation': {'movie': animation_list},
-        'Action': {'movie': action_list}
+        'Comedy ': {'movie': comedy_list},
+        'Thriller': {'movie': thriller_list},
+        'Romance': {'movie': romance_list},
+        'Horror': {'movie': horror_list},
+        'Action': {'movie': action_list},
+        'Crime': {'movie': crime_list}
     }
 
     for cat, cat_data in cats.items():

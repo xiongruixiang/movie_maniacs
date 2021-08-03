@@ -33,5 +33,11 @@ class Movie(models.Model):
     rating = models.FloatField(default=0)
     image = models.CharField(max_length=128, default='')
 
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.movie_name)
+        super(Movie, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.movie_name
