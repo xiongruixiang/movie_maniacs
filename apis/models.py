@@ -24,7 +24,7 @@ class Movie(models.Model):
     length = models.CharField(max_length=50, default='')
     introduction = models.TextField(default='')
     rating = models.FloatField(default=0)
-    # image = models.ImageField()
+    image = models.CharField(max_length=128, default='')
 
     def __str__(self):
         return self.movie_name

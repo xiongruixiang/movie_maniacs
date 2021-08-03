@@ -11,10 +11,11 @@ class MovieSerializer(serializers.Serializer):
     length = serializers.CharField(max_length=128)
     introduction = serializers.CharField(max_length=128)
     rating = serializers.FloatField(default=0)
+    image = serializers.CharField()
 
     # class Meta:
     #     model = Movie
-    #     fields = ("movie_name", "director", "introduction")
+    #     fields = 'movie_name', 'director', 'leading_actor', 'country_of_production', 'language', 'release_data', 'length', 'introduction', 'rating', 'iamge'
 
 
 
