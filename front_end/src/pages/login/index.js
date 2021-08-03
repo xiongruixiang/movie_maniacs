@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './index.css'
+import { Input, Button } from 'antd';
+import { MailOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 export default class Login extends Component {
 
@@ -11,9 +13,44 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
-          Login page
-          Test
+      <div className='login'>
+
+        <div className='header'>
+          <br />
+          <p>Log in</p>
+        </div>
+
+        <Input
+        size="large"
+        placeholder="Email"
+        prefix={<MailOutlined />}
+        />
+        <br />
+        <br />
+        <Input.Password
+        size="large"
+        placeholder="Password"
+        prefix={<LockOutlined />}
+        iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+        />
+
+        <div className='link'>
+          <Button type="link">Forget your password?</Button>
+          <br />
+          <br />
+        </div>
+
+        <Button type="primary" size='large' block>Log in</Button>
+        <br />
+        <br />
+
+        <div className='signup'>
+          <p>
+            Don't have an account?
+            <Button type="link">Sign up.</Button>
+          </p>
+        </div>
+
       </div>
     );
   }
