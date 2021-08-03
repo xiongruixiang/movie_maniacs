@@ -3,7 +3,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'movie_maniacs.settings')
 
 import django
 django.setup()
-from apis.models import Movie, Category
+from apis.models import Movie, Category, UserProfile
 
 def populate():
 
@@ -126,6 +126,7 @@ def add_movie(cat, movie_info):
     m.image = movie_info['image']
     m.save()
     return m
+
 
 if __name__ == '__main__':
     populate()

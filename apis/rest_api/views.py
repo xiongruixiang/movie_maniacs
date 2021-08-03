@@ -2,10 +2,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authtoken.models import Token
-from django.contrib.auth import authenticate
-from apis.models import Movie
+from apis.models import Movie, UserProfile
 from apis.serializer import MovieSerializer
 from django.http import JsonResponse
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 class LoginView(APIView):
 
@@ -13,28 +14,36 @@ class LoginView(APIView):
         username = request.data.get('username')
         password = request.data.get('password')
 
-        # user = authenticate(username=username, password=password)
-        # token = Token.objects.create(user=user)
+        user = authenticate(username=username, password=password)
 
-        # try:
-        #     user = User.objects.filter(username=username)
-        # except User.DoseNotExist:
-        #     return Response({'message': '用户名错误'}, status=status.HTTP_401_UNAUTHORIZED)
-        # password = User.check_password(password)
-        # if not password:
-        #     return Response({'message': '密码错误'}, status=status.HTTP_401_UNAUTHORIZED)
+        if user:
+            if user.is_active:
+                token, created = Token.objects.get_or_create(user=user)
+                return Response({'message': 'Login success!', 'status': 200, 'token': token.key}, status=status.HTTP_200_OK)
+            else:
+                return Response({'message': 'Your account is disabled.', 'status': 'failed'}, status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response({'message': 'Account or password error.', 'status': 'failed'},status=status.HTTP_401_UNAUTHORIZED)
 
-        return Response({'message':'login success!', 'status': 200}, status=status.HTTP_200_OK)
 
 class SignupView(APIView):
 
     def post(self, request):
+
         username = request.data.get('username')
         password = request.data.get('password')
+        email = request.data.get('email')
 
-        # username是唯一的
+        user = User.objects.filter(username=username)
+
+        if len(user) != 0:
+            return Response({'message': 'Account already exists', 'status': 'failed'}, status=status.HTTP_401_UNAUTHORIZED)
+
+        # Create User instance
+        User.objects.create_user(username, email, password)
 
         return Response({'message': 'Signup success!', 'status': 200}, status=status.HTTP_200_OK)
+
 
 class LogoutView(APIView):
 
