@@ -1,7 +1,6 @@
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'movie_maniacs.settings')
 
-
 import django
 django.setup()
 from apis.models import Movie, Category
@@ -18,6 +17,7 @@ def populate():
             'release_data': '2017',
             'length': '1h 45min',
             'rating': 8.4,
+            'image': '../../media/coco.jpeg',
             'introduction': "Aspiring musician Miguel, confronted with his family's ancestral ban on music, enters the Land of the Dead to find his great-great-grandfather, a legendary singer."
         },
         {
@@ -29,6 +29,7 @@ def populate():
             'release_data': '2010',
             'length': '1h 35min',
             'rating': 7.2,
+            'image': '../../media/coco.jpeg',
             'introduction': 'Evil genius Megamind finally defeats his do-gooder nemesis, Metro Man, but is left without a purpose in a superhero-free world.'
         },
         {
@@ -40,6 +41,7 @@ def populate():
             'release_data': '2016',
             'length': '1h 48min',
             'rating': 8.0,
+            'image': '../../media/coco.jpeg',
             'introduction': 'In a city of anthropomorphic animals, a rookie bunny cop and a cynical con artist fox must work together to uncover a conspiracy.'
         },
         {
@@ -51,6 +53,7 @@ def populate():
             'release_data': '2019',
             'length': '1h 58min',
             'rating': 6.8,
+            'image': '../../media/coco.jpeg',
             'introduction': 'After the murder of his father, a young lion prince flees his kingdom only to learn the true meaning of responsibility and bravery.'
         },
     ]
@@ -65,6 +68,7 @@ def populate():
             'release_data': '2021',
             'length': '2h 14min',
             'rating': 6.9,
+            'image': '../../media/coco.jpeg',
             'introduction': 'Natasha Romanoff confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises.'
         },
         {
@@ -76,6 +80,7 @@ def populate():
             'release_data': '2021',
             'length': '2h 23min',
             'rating': 5.3,
+            'image': '../../media/coco.jpeg',
             'introduction': "Dom and the crew must take on an international terrorist who turns out to be Dom and Mia's estranged brother."
         },
         {
@@ -87,6 +92,7 @@ def populate():
             'release_data': '2020',
             'length': '2h 30min',
             'rating': 7.4,
+            'image': '../../media/coco.jpeg',
             'introduction': 'Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.'
         }
     ]
@@ -117,6 +123,7 @@ def add_movie(cat, movie_info):
     m.length = movie_info['length']
     m.introduction = movie_info['introduction']
     m.rating = movie_info['rating']
+    m.image = movie_info['image']
     m.save()
     return m
 
