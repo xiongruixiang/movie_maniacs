@@ -1,0 +1,54 @@
+.titleAddMovie{
+    position:relative;
+    top:50px;
+    font-size: 40px;
+    color:firebrick;
+    text-align:center;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.site-page-header {
+    border: 1px solid rgb(235, 237, 240);
+  }
+
+.name{
+    font-size: 20px;
+    color:firebrick;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.t{ 
+    position: absolute;
+    left:400px;
+
+}
+.t td{   
+    
+    padding: 10px;
+}
+
+.t tr{
+    border: 10px ;
+    padding: 10px;
+}
+
+.avatar-uploader > .ant-upload {
+    width: 300px;
+    height: 400px;
+  }
+
+.uploadPhoto{
+    position: absolute;
+    left:600px;
+    top:100px;
+
+}
+
+.addMovie{
+    font-size: 40px;
+    position: absolute;
+    left:1050px;
+    top:700px;
+}

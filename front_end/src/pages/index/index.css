@@ -1,4 +1,169 @@
-.homepage {
-    font-size: 18px;
-    color: blue;
+BODY { 
+    background: rgb(240, 236, 236);
+}
+
+.title {
+    position:relative;
+    /* top:50px; */
+    font-size: 40px;
+    color:firebrick;
+    text-align:center;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.SearchButton{
+    position:absolute;
+    left:360px;
+}
+
+.addMovieButton{
+    position:absolute;  
+    left:720px;
+}
+
+.login{
+    /* color:white; */
+    font-size: 20px;
+    position:absolute;
+    left:1200px;
+}
+
+.line{
+    position:relative;
+    top:50px;
+    
+}
+
+.smallTitle{
+    position:relative;
+    top:50px;
+    left:100px;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: bold;
+    color:firebrick;
+}
+
+.movie1{
+    position:relative;
+    top:50px;
+    left:50px;
+}
+
+.introduction1{
+    /* color:white; */
+    font-style: italic;
+    font-weight: bold;
+    position:relative;
+    top:0px;
+    left:00px;
+}
+
+.movie2{
+    position:relative;
+    top:-260px;
+    left:350px;
+}
+.introduction2{
+    /* color:white; */
+    font-style: italic;
+    font-weight: bold;
+    position:relative;
+    top:0px;
+    left:0px;
+}
+.movie3{
+    position:relative;
+    top:-570px;
+    left:650px;
+}
+.introduction3{
+    /* color:white; */
+    font-style: italic;
+    font-weight: bold;
+    position:relative;
+    top:0px;
+    left:0px;
+}
+.movie4{
+    position:relative;
+    top:-880px;
+    left:950px;
+}
+.introduction4{
+    /* color:white; */
+    font-style: italic;
+    font-weight: bold;
+    position:relative;
+    top:0px;
+    left:0px;
+}
+.movie5{
+    position:relative;
+    top:-1190px;
+    left:1250px;
+}
+.introduction5{
+    /* color:white; */
+    font-style: italic;
+    font-weight: bold;
+    position:relative;
+    top:-0px;
+    left:0px;
+}
+
+.ReButton{
+    position:relative;
+    top:-1400px;
+    left:1450px;
+}
+
+.line2{
+    position:relative;
+    top:-1050px;
+    
+}
+
+.picture{
+    position:relative;
+    top:-1000px;
+    left:80px;
+}
+
+.category{
+    font-style: italic;
+    font-weight: bold;
+    position:relative;
+    font-size: 30px;
+    top:-1400px;
+    left:400px;
+    color:firebrick;
+}
+.category em{
+    font-size: 20px;
+}
+
+.popular{
+    font-style: italic;
+    font-weight: bold;
+    position:relative;
+    font-size: 30px;
+    top:-1600px;
+    left:700px;
+    color:firebrick;
+}
+.popular em{
+    font-size: 20px;
+}
+.picture2{
+    position:relative;
+    top:-1870px;
+    left:1100px;
+}
+
+.about_us{
+    position:relative;
+    top:-1870px;
+    left:600px;
 }
