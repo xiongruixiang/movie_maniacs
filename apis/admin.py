@@ -1,3 +1,6 @@
 from django.contrib import admin
+from apis.models import UserProfile, Category, Movie
 
-# Register your models here.
+admin.site.register(Category)
+admin.site.register(Movie)
+admin.site.register(UserProfile)
