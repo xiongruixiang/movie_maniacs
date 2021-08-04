@@ -1,243 +1,138 @@
 import React, { Component } from 'react';
 import './index.css'
-import { Button } from 'antd';
 import imagesMap from '../../constants/images-map'
-import { Input, Space } from 'antd';
-import { AudioOutlined } from '@ant-design/icons';
-import { Tag } from 'antd';
-import { Rate } from 'antd';
-
-function log(e) {
-  console.log(e);
-}
-
-function preventDefault(e) {
-  e.preventDefault();
-  console.log('Clicked! But prevent default.');
-}
-
-const { Search } = Input;
-const suffix = (
-  <AudioOutlined
-    style={{
-      fontSize: 16,
-      color: '#1890ff',
-    }}
-  />
-);
-const onSearch = value => console.log(value);
+import { Button, Rate } from "antd";
+import $ from 'jquery'
+import category from '../../constants/category'
 
 export default class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            searchName: '',
+            latestMovies: [],
+            topFiveMovies: []
+        }
+    }
+
+    componentDidMount() {
+        this.getLatestMovies()
+        this.getTopFiveMovies()
+    }
+
+    getLatestMovies() {
+        let url = 'http://127.0.0.1:8000/api/movie/latest_five_movies/'
+        $.get(url, (result) => {
+            if (result.status === 200) {
+                console.log(result.data)
+                this.setState({
+                    latestMovies: result.data
+                })
+            }
+        })
+    }
+
+    getTopFiveMovies() {
+        let url = 'http://127.0.0.1:8000/api/movie/top_five_movies/'
+        $.get(url, (result) => {
+            if (result.status === 200) {
+                console.log(result.data)
+                this.setState({
+                    topFiveMovies: result.data
+                })
+            }
+        })
+    }
+
+    getSearchMovie(e) {
+        this.setState({
+            searchName: e.target.value.toLowerCase()
+        })
+    }
+
+    searchMovie() {
+        let { searchName } = this.state
+        let movie_name = searchName.split(' ').join('-')
+        let url="http://127.0.0.1:8000/api/movie/" + movie_name + "/"
+        $.get(url, (result) => {
+            console.log(result)
+            // do something
+        })
+    }
+
+    movieList() {
+        let { latestMovies } = this.state
+        latestMovies.map((index, item) => {
+            console.log(item)
+        })
+
+    }
+
+    goToMovieListByCat(category) {
+
     }
 
 
-  render() {
-    
-    return (
-      
-      <html>
-      
-      <div className='title'>
-          <h>Movie-Maniacs</h>
-      </div>
-          <br/>
-          <div align ="center">
-          <img src={imagesMap.rango} height="200" width="1000" alt='rango'/ >
-          </div>
-          
-        <br/>
-        <div class="SearchButton">
-        <Search placeholder="input search text" onSearch={onSearch} style={{ width: 200 }} />
-        </div>
-          
-        <div class="addMovieButton">
-          {/* 管理员权限 */}
-        {/* <Button type="link">add movies (admin only)</Button> */}
-          {/* 普通用户 无权限 */}
-        {/* <Button type="link" disabled>
-        Link(disabled)
-       </Button> */}
-       <Button><a href="http://localhost:3000/add-movie">Add Movies (admin only)</a></Button>
-        </div>
-
-        <div class="login">
-        
-                {/* {% if user.is_authenticated %} */}
-                    {/* <!-- Show these links when the user is logged in --> */}
-                    <Button type="primary">Login/Signup</Button>
-                    {/* <li><a href="{% url 'rango:restricted' %}">Restricted Page</a></li>
-                    <li><a href="{% url 'rango:logout' %}">Logout</a></li> 
-                    <li><a href="{% url 'rango:add_category' %}">Add New Category</a> */}
-                {/* {% else %} */}
-                    {/* <!-- Show these links when the user is NOT logged in --> */}
-                    {/* <li><a href="{% url 'rango:register' %}">Sign Up</a></li>
-                    <li><a href="{% url 'rango:login' %}">Login</a></li>  */}
-                {/* {% endif %} */}
-                    {/* <!-- Outside the conditional statements, ALWAYS show --> */}
-                    
-                    {/* </li> <li><a href="{% url 'rango:about' %}">About</a></li>
-                    <li><a href="{% url 'rango:index' %}">Index</a></li> */}
-          
-          {/* 用户认证 */}
-          {/* 
-            {% if user.is_authenticated %} 
-                howdy {{ user.username }}! Welcome to Movie-Maniacs!
-            {% else %}
-                hey there partner! Welcome to Movie-Maniacs!
-            {% endif %}         
-        */}
-        </div>
-        <body>
-        <br/>
-        <div class="line"> <hr></hr> </div>
-        <div class= "smallTitle">
-        <br/>
-          Expolre what's streaming
-          <br/><br/>
-        </div>
-
-        <div class="movie1">
-          <img src={imagesMap.rango} height="200" width="150" alt='rango'/ >
-          <div class="introduction1">
-          Name:<br/>
-          Actor:<br/>
-          Date:<br/>
-          Type: <Tag>
-           <a href="https://github.com/ant-design/ant-design/issues/1862">Comedy</a>
-          </Tag><br/>
-          {/* 电影简介的链接 */}
-          <a href="https://github.com/ant-design/ant-design/issues/1862">introduction:</a>
-          </div>
-          </div>
-          <div class="movie2">
-          <img src={imagesMap.rango} height="200" width="150" alt='rango'/ >
-          <div class="introduction2">  
-          Name:<br/>
-          Actor:<br/>
-          Date:<br/>
-          Type: <Tag>
-           <a href="https://github.com/ant-design/ant-design/issues/1862">Comedy</a>
-          </Tag><br/>
-          {/* 电影简介的链接 */}
-          <a href="https://github.com/ant-design/ant-design/issues/1862">introduction:</a>
-          </div>
-          </div>
-         
-          <div class="movie3">
-          <img src={imagesMap.rango} height="200" width="150" alt='rango'/ >
-          <div class="introduction3">  
-          Name:<br/>
-          Actor:<br/>
-          Date:<br/>
-          Type: <Tag>
-           <a href="https://github.com/ant-design/ant-design/issues/1862">Comedy</a>
-          </Tag><br/>
-          {/* 电影简介的链接 */}
-          <a href="https://github.com/ant-design/ant-design/issues/1862">introduction:</a>
-          </div>
-          </div>
-          
-          <div class="movie4">
-          <img src={imagesMap.rango} height="200" width="150" alt='rango'/ >
-          <div class="introduction4">  
-          Name:<br/>
-          Actor:<br/>
-          Date:<br/>
-          Type: <Tag>
-           <a href="https://github.com/ant-design/ant-design/issues/1862">Comedy</a>
-          </Tag><br/>
-          {/* 电影简介的链接 */}
-          <a href="https://github.com/ant-design/ant-design/issues/1862">introduction:</a>
-          
-          </div>
-          </div>
-          <div class="movie5">
-          <img src={imagesMap.rango} height="200" width="150" alt='rango'/ >
-          <div class="introduction5">  
-          Name:<br/>
-          Actor:<br/>
-          Date:<br/>
-          Type: <Tag>
-           <a href="https://github.com/ant-design/ant-design/issues/1862">Comedy</a>
-          </Tag><br/>
-          {/* 电影简介的链接 */}
-          <a href="https://github.com/ant-design/ant-design/issues/1862">introduction:</a>
-          </div>
-          </div>
-          <div class="ReButton">
-          <Button type="primary"><a href="http://localhost:3000/movie">Get more recommendations</a></Button>
-          </div>
-
-          <div class="line2"> <hr></hr> </div>
-          
-          <div class="picture">
-          <img src={imagesMap.rango} height="400" width="200" alt='rango'/ >
-          </div>
-
-          <div class="category">  
-          category
-          <div>
-          <Tag>
-           <a href="https://github.com/ant-design/ant-design/issues/1862"><em>Comedy</em></a>
-          </Tag>
-          <Tag>
-           <a href="https://github.com/ant-design/ant-design/issues/1862"><em>Thriller</em></a>
-          </Tag>
-          <br/>
-          <Tag>
-           <a href="https://github.com/ant-design/ant-design/issues/1862"><em>Romance</em></a>
-          </Tag>
-          <Tag>
-           <a href="https://github.com/ant-design/ant-design/issues/1862"><em>Horror</em></a>
-          </Tag>
-          <br/>
-          <Tag>
-           <a href="https://github.com/ant-design/ant-design/issues/1862"><em>Action</em></a>
-          </Tag>
-          <Tag>
-           <a href="https://github.com/ant-design/ant-design/issues/1862"><em>Crime</em></a>
-          </Tag>
-          </div>
-          </div>
-
-          <div class="popular">
-            The most popular<br/>
-            <em>
-              {/* 换电影链接 */}
-            <a href="https://github.com/ant-design/ant-design/issues/1862">Movie name1</a>
-            <Rate disabled defaultValue={5} />
-            <br/>
-            <a href="https://github.com/ant-design/ant-design/issues/1862">Movie name2</a>
-            <Rate disabled defaultValue={5} />
-            <br/>
-            <a href="https://github.com/ant-design/ant-design/issues/1862">Movie name3</a>
-            <Rate disabled defaultValue={4} />
-            <br/>
-            <a href="https://github.com/ant-design/ant-design/issues/1862">Movie name4</a>
-            <Rate disabled defaultValue={4} />
-            <br/>
-            <a href="https://github.com/ant-design/ant-design/issues/1862">Movie name5</a>
-            <Rate disabled defaultValue={4} />
-            </em>
-          </div>
-
-          <div class="picture2">
-          <img src={imagesMap.rango} height="400" width="500" alt='rango'/ >
-          </div>
-
-          <div class="about_us">
-          <a href="http://localhost:3000/about-us">-About Us-</a>
-          </div>
-
-        </body> 
-          
-      </html>
-      
-
-    );
-  }
+    render() {
+        let { latestMovies, topFiveMovies } = this.state
+        return (
+            <div>
+                <div className='home-header'>
+                    <div className='home-top'>
+                        <p className='title'>Movie-Maniacs</p>
+                        <div className='search-login-signup'>
+                            <input className='search-input' placeholder='Search Movie' onChange={(e) => this.getSearchMovie(e)} />
+                            <Button className='home-button' onClick={() => this.searchMovie()}>Search</Button>
+                            <Button className='home-button login-btn'>Login</Button>
+                            <Button className='home-button signup-btn'>Signup</Button>
+                        </div>
+                    </div>
+                    <img src={imagesMap.banner} className='banner' alt='banner' />
+                </div>
+                <div className='home-latest-list'>
+                    <p className='title sub-title'>Explore what's streaming</p>
+                    <div className='latest-movie-list'>
+                        {latestMovies.map((item, index) => (
+                            <div className='movie-detail' key={index}>
+                                <img src={item.image} alt='movie-name' height='280' width='200'/>
+                                <p>Name: {item.movie_name}</p>
+                                <p>Director: {item.director}</p>
+                                <p>Rating: <span className='rating'>{item.rating}</span></p>
+                                <Rate disabled defaultValue={item.rating} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className='category-list'>
+                    <p className='title sub-title'>Categories</p>
+                    <div className='latest-movie-list'>
+                        {category.map((item, index) => (
+                            <div className='movie-detail' key={index}>
+                                <img src={item.image} alt='movie-name' height='280' width='200'/>
+                                <p className='category-name'><a onClick={() => this.goToMovieListByCat()}>{item.name}</a></p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className='category-list'>
+                    <p className='title sub-title'>Top 5 movies</p>
+                    <div className='latest-movie-list'>
+                        {topFiveMovies.map((item, index) => (
+                            <div className='movie-detail' key={index}>
+                                <img src={item.image} alt='movie-name' height='280' width='200'/>
+                                <p>Name: {item.movie_name}</p>
+                                <p>Director: {item.director}</p>
+                                <p>Rating: <span className='rating'>{item.rating}</span></p>
+                                <Rate disabled defaultValue={item.rating} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <footer className='home-footer'>
+                    <a>--about us--</a>
+                </footer>
+            </div>
+        )
+    }
 }

@@ -1,24 +1,31 @@
 {
   "files": {
-    "main.css": "/static/css/main.dce27be4.chunk.css",
-    "main.js": "/static/js/main.368a638a.chunk.js",
-    "main.js.map": "/static/js/main.368a638a.chunk.js.map",
+    "main.css": "/static/css/main.6490d82e.chunk.css",
+    "main.js": "/static/js/main.a640e9af.chunk.js",
+    "main.js.map": "/static/js/main.a640e9af.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.91b9baf8.js",
     "runtime-main.js.map": "/static/js/runtime-main.91b9baf8.js.map",
     "static/css/2.c09b5ca6.chunk.css": "/static/css/2.c09b5ca6.chunk.css",
-    "static/js/2.64ffd912.chunk.js": "/static/js/2.64ffd912.chunk.js",
-    "static/js/2.64ffd912.chunk.js.map": "/static/js/2.64ffd912.chunk.js.map",
+    "static/js/2.358ae08c.chunk.js": "/static/js/2.358ae08c.chunk.js",
+    "static/js/2.358ae08c.chunk.js.map": "/static/js/2.358ae08c.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.c09b5ca6.chunk.css.map": "/static/css/2.c09b5ca6.chunk.css.map",
-    "static/css/main.dce27be4.chunk.css.map": "/static/css/main.dce27be4.chunk.css.map",
-    "static/js/2.64ffd912.chunk.js.LICENSE.txt": "/static/js/2.64ffd912.chunk.js.LICENSE.txt",
-    "static/media/rango.146be103.jpg": "/static/media/rango.146be103.jpg"
+    "static/css/main.6490d82e.chunk.css.map": "/static/css/main.6490d82e.chunk.css.map",
+    "static/js/2.358ae08c.chunk.js.LICENSE.txt": "/static/js/2.358ae08c.chunk.js.LICENSE.txt",
+    "static/media/action.4d16ee1e.jpeg": "/static/media/action.4d16ee1e.jpeg",
+    "static/media/banner.00fc02ef.jpeg": "/static/media/banner.00fc02ef.jpeg",
+    "static/media/comedy.6aeab715.jpeg": "/static/media/comedy.6aeab715.jpeg",
+    "static/media/crime.03416c16.jpeg": "/static/media/crime.03416c16.jpeg",
+    "static/media/horror.6cee2bed.jpeg": "/static/media/horror.6cee2bed.jpeg",
+    "static/media/rango.146be103.jpg": "/static/media/rango.146be103.jpg",
+    "static/media/romance.9cc3510d.jpeg": "/static/media/romance.9cc3510d.jpeg",
+    "static/media/thriller.7d6fcfb4.jpeg": "/static/media/thriller.7d6fcfb4.jpeg"
   },
   "entrypoints": [
     "static/js/runtime-main.91b9baf8.js",
     "static/css/2.c09b5ca6.chunk.css",
-    "static/js/2.64ffd912.chunk.js",
-    "static/css/main.dce27be4.chunk.css",
-    "static/js/main.368a638a.chunk.js"
+    "static/js/2.358ae08c.chunk.js",
+    "static/css/main.6490d82e.chunk.css",
+    "static/js/main.a640e9af.chunk.js"
   ]
 }
