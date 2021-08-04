@@ -9,17 +9,19 @@ import Signup from "./pages/signup";
 import Movie from "./pages/movie";
 import AddMovie from './pages/add-movie';
 import About from './pages/about-us';
+import MovieDetail from './pages/movie-detail'
 
 
 const App = () => (
   <BrowserRouter>
     <div>
       <Route exact path="/" component={Home} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/movie" component={Movie} />
-      <Route path="/add-movie" component={AddMovie} />
-      <Route path="/about-us" component={About} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/signup" component={Signup} />
+      <Route exact path="/movie" component={Movie} />
+      <Route exact path="/add-movie" component={AddMovie} />
+      <Route exact path="/about-us" component={About} />
+      <Route exact path="/movie/:name" component={MovieDetail} />
     </div>
   </BrowserRouter>
 );
