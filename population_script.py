@@ -88,7 +88,7 @@ def populate():
             'length': '2h 30min',
             'rating': 7.4,
             'introduction': 'Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.'
-        }
+        },
     ]
 
     cats = {
