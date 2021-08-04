@@ -11,18 +11,17 @@ export default class Login extends Component {
     }
 
 
-  render() {
-
-    const onFinish = (values) => {
-      console.log('Received values of form: ', values);
+    onFinish = (values) => {
+      console.log(values);
     };
 
+  render() {
     return (
 
       <Form
       name="login"
       className="login"
-      onFinish={onFinish}
+      onFinish={this.onFinish}
       >
 
         <Form.Item className="login-header">
@@ -56,7 +55,7 @@ export default class Login extends Component {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-button" href="/">
+          <Button type="primary" htmlType="submit" className="login-button">
             Log in
           </Button>
         </Form.Item>

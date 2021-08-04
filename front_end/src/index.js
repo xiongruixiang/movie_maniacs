@@ -7,6 +7,8 @@ import Home from "./pages/index";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Movie from "./pages/movie";
+import MovieDetail from './pages/movie-detail';
+import AddReview from "./pages/add-review";
 
 
 const App = () => (
@@ -16,6 +18,8 @@ const App = () => (
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="/movie" component={Movie} />
+      <Route path="/movie-detail" component={MovieDetail} />
+      <Route path="/add-review" component={AddReview} />
     </div>
   </BrowserRouter>
 );

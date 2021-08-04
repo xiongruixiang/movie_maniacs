@@ -11,20 +11,20 @@ export default class Signup extends Component {
     }
 
 
+  onFinish = (values) => {
+    console.log(values);
+  };
+
   render() {
-
-    const onFinish = (values) => {
-      console.log('Received values of form: ', values);
-    };
-
     return (
 
       <Form
       name="signup"
       className="signup"
-      onFinish={onFinish}
+      onFinish={this.onFinish}
       layout="vertical"
       >
+
         <Form.Item className="signup-header">
           <br/>
           Sign up
@@ -63,7 +63,7 @@ export default class Signup extends Component {
 
         <Form.Item
         label="Re-enter password"
-        name="re-enter"
+        name="reEnter"
         dependencies={['password']}
         hasFeedback
         rules={[
@@ -86,7 +86,7 @@ export default class Signup extends Component {
 
         <Form.Item>
           <br/>
-          <Button type="primary" htmlType="submit" className="signup-button" href="/login">
+          <Button type="primary" htmlType="submit" className="signup-button">
             Sign up
           </Button>
         </Form.Item>
