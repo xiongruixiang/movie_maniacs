@@ -3,7 +3,7 @@ from apis.rest_api import views
 
 urlpatterns = [
     path('login/', views.login, name='login'),
-    path('signup/', views.SignupView.as_view(), name='signup'),
+    path('signup/', views.signup, name='signup'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path('movie_list/', views.MovieListView.as_view(), name='movie_list'),
     path('movie/top_five_movies/', views.TopFiveMovies.as_view(), name='top_five_movies'),

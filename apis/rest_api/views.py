@@ -27,22 +27,21 @@ def login(request):
                         status=status.HTTP_401_UNAUTHORIZED)
 
 
+@api_view(['POST'])
+def signup(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+    email = request.data.get('email')
 
-class SignupView(APIView):
+    user = User.objects.filter(username=username)
 
-    def post(self, request):
-        username = request.data.get('username')
-        password = request.data.get('password')
-        email = request.data.get('email')
+    if len(user) != 0:
+        return Response({'message': 'Account already exists', 'status': 'failed'}, status=status.HTTP_200_OK)
 
-        user = User.objects.filter(username=username)
+    # Create User instance
+    User.objects.create_user(username, email, password)
 
-        if len(user) != 0:
-            return Response({'message': 'Account already exists', 'status': 'failed'}, status=status.HTTP_401_UNAUTHORIZED)
-
-        # Create User instance
-        User.objects.create_user(username, email, password)
-        return Response({'message': 'Signup success!', 'status': 200}, status=status.HTTP_200_OK)
+    return Response({'message': 'Signup success!', 'status': 200}, status=status.HTTP_200_OK)
 
 
 class LogoutView(APIView):
