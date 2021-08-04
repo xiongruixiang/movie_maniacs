@@ -56,7 +56,15 @@ def top_five_movies(request):
 
 @api_view(['GET'])
 def movie_detail(request, movie_name_slug):
-    movie = Movie.objects.get(slug=movie_name_slug)
+
+    try:
+        movie = Movie.objects.get(slug=movie_name_slug)
+    except Movie.DoesNotExist:
+        movie = None
+
+    if movie is None:
+        return Response({'message': "We can't find information about this movie", 'status': 'failed'}, status=status.HTTP_200_OK)
+
     serializer = MovieSerializer(movie)
 
     review = Review.objects.filter(movie_name=movie.movie_name)
@@ -102,3 +110,10 @@ def get_all_review(request):
     review = Review.objects.all()
     r_serializer = ReviewSerializer(review, many=True)
     return Response({'review': r_serializer.data, 'status': 200}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_latest_five_movies(request):
+    print('1111')
+    top_five = Movie.objects.order_by('-release_data')[:5]
+    serializer = MovieSerializer(top_five, many=True)
+    return Response({'data': serializer.data, 'status': 200}, status=status.HTTP_200_OK)

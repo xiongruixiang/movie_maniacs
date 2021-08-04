@@ -1,169 +1,120 @@
-BODY { 
+body {
     background: rgb(240, 236, 236);
 }
 
+.home-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 120px 20px 40px;
+}
+
 .title {
-    position:relative;
-    /* top:50px; */
+    top: 20px;
     font-size: 40px;
-    color:firebrick;
-    text-align:center;
+    color: firebrick;
     font-style: italic;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.search-login-signup {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-input {
+    border: none;
+    height: 30px;
+    font-size: 14px;
+}
+
+.banner {
+    height: 410px;
+    width: 100%;
+}
+
+.home-button {
+    background-color: firebrick;
+    color: #fff;
+    font-size: 16px;
+}
+
+.login-btn {
+    margin-left: 200px;
+    margin-right: 20px;
+}
+
+.home-latest-list {
+    margin-top: 40px;
+}
+
+.sub-title {
+    font-size: 34px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+.movie-img-container {
+    height: 280px;
+    width: 190px;
+}
+
+.latest-movie-list {
+    display: flex;
+    justify-content: space-around;
+}
+
+.movie-detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-detail img {
+    margin-bottom: 10px;
+}
+
+.movie-detail p {
     font-weight: bold;
 }
 
-.SearchButton{
-    position:absolute;
-    left:360px;
+.rating {
+    color: firebrick;
 }
 
-.addMovieButton{
-    position:absolute;  
-    left:720px;
+.category-name {
+    align-self: center;
 }
 
-.login{
-    /* color:white; */
-    font-size: 20px;
-    position:absolute;
-    left:1200px;
+.category-name a {
+    color: firebrick;
+    text-decoration: none;
 }
 
-.line{
-    position:relative;
-    top:50px;
-    
+.category-name a:hover {
+    color: black;
 }
 
-.smallTitle{
-    position:relative;
-    top:50px;
-    left:100px;
-    font-size: 30px;
-    font-style: italic;
-    font-weight: bold;
-    color:firebrick;
+.home-footer {
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.movie1{
-    position:relative;
-    top:50px;
-    left:50px;
+.home-footer a {
+    color: firebrick;
+    font-size: 24px;
+    text-decoration: none;
 }
 
-.introduction1{
-    /* color:white; */
-    font-style: italic;
-    font-weight: bold;
-    position:relative;
-    top:0px;
-    left:00px;
-}
-
-.movie2{
-    position:relative;
-    top:-260px;
-    left:350px;
-}
-.introduction2{
-    /* color:white; */
-    font-style: italic;
-    font-weight: bold;
-    position:relative;
-    top:0px;
-    left:0px;
-}
-.movie3{
-    position:relative;
-    top:-570px;
-    left:650px;
-}
-.introduction3{
-    /* color:white; */
-    font-style: italic;
-    font-weight: bold;
-    position:relative;
-    top:0px;
-    left:0px;
-}
-.movie4{
-    position:relative;
-    top:-880px;
-    left:950px;
-}
-.introduction4{
-    /* color:white; */
-    font-style: italic;
-    font-weight: bold;
-    position:relative;
-    top:0px;
-    left:0px;
-}
-.movie5{
-    position:relative;
-    top:-1190px;
-    left:1250px;
-}
-.introduction5{
-    /* color:white; */
-    font-style: italic;
-    font-weight: bold;
-    position:relative;
-    top:-0px;
-    left:0px;
-}
-
-.ReButton{
-    position:relative;
-    top:-1400px;
-    left:1450px;
-}
-
-.line2{
-    position:relative;
-    top:-1050px;
-    
-}
-
-.picture{
-    position:relative;
-    top:-1000px;
-    left:80px;
-}
-
-.category{
-    font-style: italic;
-    font-weight: bold;
-    position:relative;
-    font-size: 30px;
-    top:-1400px;
-    left:400px;
-    color:firebrick;
-}
-.category em{
-    font-size: 20px;
-}
-
-.popular{
-    font-style: italic;
-    font-weight: bold;
-    position:relative;
-    font-size: 30px;
-    top:-1600px;
-    left:700px;
-    color:firebrick;
-}
-.popular em{
-    font-size: 20px;
-}
-.picture2{
-    position:relative;
-    top:-1870px;
-    left:1100px;
-}
-
-.about_us{
-    position:relative;
-    top:-1870px;
-    left:600px;
+.home-footer a:hover {
+    color: black;
 }
