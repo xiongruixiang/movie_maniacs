@@ -4,6 +4,7 @@ import imagesMap from '../../constants/images-map'
 import { Button, Rate } from "antd";
 import $ from 'jquery'
 import category from '../../constants/category'
+import Header from '../../component/header'
 
 export default class Home extends Component {
 
@@ -25,7 +26,6 @@ export default class Home extends Component {
         let url = 'http://127.0.0.1:8000/api/movie/latest_five_movies/'
         $.get(url, (result) => {
             if (result.status === 200) {
-                console.log(result.data)
                 this.setState({
                     latestMovies: result.data
                 })
@@ -37,7 +37,6 @@ export default class Home extends Component {
         let url = 'http://127.0.0.1:8000/api/movie/top_five_movies/'
         $.get(url, (result) => {
             if (result.status === 200) {
-                console.log(result.data)
                 this.setState({
                     topFiveMovies: result.data
                 })
@@ -54,11 +53,11 @@ export default class Home extends Component {
     searchMovie() {
         let { searchName } = this.state
         let movie_name = searchName.split(' ').join('-')
-        let url="http://127.0.0.1:8000/api/movie/" + movie_name + "/"
-        $.get(url, (result) => {
-            console.log(result)
-            // do something
-        })
+        // let url="http://127.0.0.1:8000/api/movie/" + movie_name + "/"
+        // $.get(url, (result) => {
+        //     console.log(result)
+        //     // do something
+        // })
     }
 
     movieList() {
@@ -73,28 +72,35 @@ export default class Home extends Component {
 
     }
 
+    goToMovieDetail(movie_name) {
+        let name = movie_name.toLowerCase().split(' ').join('-')
+        let url="http://127.0.0.1:8000/api/movie/" + name + "/"
+        $.get(url, (result) => {
+            if (result.status === 200) {
+                this.props.history.push({
+                    pathname: '/movie/' + name + '/',
+                    state: {
+                        movie_info: result.data
+                    }
+                })
+            }
+        })
+    }
+
 
     render() {
         let { latestMovies, topFiveMovies } = this.state
         return (
             <div>
                 <div className='home-header'>
-                    <div className='home-top'>
-                        <p className='title'>Movie-Maniacs</p>
-                        <div className='search-login-signup'>
-                            <input className='search-input' placeholder='Search Movie' onChange={(e) => this.getSearchMovie(e)} />
-                            <Button className='home-button' onClick={() => this.searchMovie()}>Search</Button>
-                            <Button className='home-button login-btn'>Login</Button>
-                            <Button className='home-button signup-btn'>Signup</Button>
-                        </div>
-                    </div>
+                    <Header />
                     <img src={imagesMap.banner} className='banner' alt='banner' />
                 </div>
                 <div className='home-latest-list'>
                     <p className='title sub-title'>Explore what's streaming</p>
                     <div className='latest-movie-list'>
                         {latestMovies.map((item, index) => (
-                            <div className='movie-detail' key={index}>
+                            <div className='movie-detail' key={index} onClick={() => this.goToMovieDetail(item.movie_name)}>
                                 <img src={item.image} alt='movie-name' height='280' width='200'/>
                                 <p>Name: {item.movie_name}</p>
                                 <p>Director: {item.director}</p>
