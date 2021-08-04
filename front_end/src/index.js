@@ -9,6 +9,8 @@ import Signup from "./pages/signup";
 import Movie from "./pages/movie";
 import AddMovie from './pages/add-movie';
 import About from './pages/about-us';
+import MovieDetail from './pages/movie-detail';
+import AddReview from "./pages/add-review";
 
 
 const App = () => (
@@ -20,6 +22,8 @@ const App = () => (
       <Route path="/movie" component={Movie} />
       <Route path="/add-movie" component={AddMovie} />
       <Route path="/about-us" component={About} />
+      <Route path="/movie-detail" component={MovieDetail} />
+      <Route path="/add-review" component={AddReview} />
     </div>
   </BrowserRouter>
 );
