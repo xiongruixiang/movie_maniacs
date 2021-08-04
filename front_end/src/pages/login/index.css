@@ -1,15 +1,23 @@
 .login {
     margin: auto;
-    width: 30%;
+    width: 25%;
+}
+
+.login-header {
+    font-family:"Times New Roman";
+    font-size: 28px;
+    font-weight: bold;
     text-align: center;
 }
 
-.loginHeader {
-    font-family:"Times New Roman";
-    font-size: 30px;
-    font-weight: bold;
+.forgot-password {
+    float: right;
 }
 
-.forgetPassword {
-    float: right;
+.login-button {
+    width: 100%;
+}
+
+.login-signup {
+    text-align: center;
 }
