@@ -14,3 +14,8 @@ class MovieSerializer(serializers.Serializer):
     rating = serializers.FloatField(default=0)
     image = serializers.CharField()
 
+class ReviewSerializer(serializers.Serializer):
+    movie_name = serializers.CharField(max_length=128, default='')
+    rating = serializers.FloatField(default=0)
+    likes = serializers.IntegerField(default=0)
+    content = serializers.CharField(max_length=128)

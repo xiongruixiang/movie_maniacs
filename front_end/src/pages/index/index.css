@@ -1,4 +1,120 @@
-.homepage {
-    font-size: 18px;
-    color: blue;
+body {
+    background: rgb(240, 236, 236);
+}
+
+.home-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 120px 20px 40px;
+}
+
+.title {
+    top: 20px;
+    font-size: 40px;
+    color: firebrick;
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.search-login-signup {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-input {
+    border: none;
+    height: 30px;
+    font-size: 14px;
+}
+
+.banner {
+    height: 410px;
+    width: 100%;
+}
+
+.home-button {
+    background-color: firebrick;
+    color: #fff;
+    font-size: 16px;
+}
+
+.login-btn {
+    margin-left: 200px;
+    margin-right: 20px;
+}
+
+.home-latest-list {
+    margin-top: 40px;
+}
+
+.sub-title {
+    font-size: 34px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+.movie-img-container {
+    height: 280px;
+    width: 190px;
+}
+
+.latest-movie-list {
+    display: flex;
+    justify-content: space-around;
+}
+
+.movie-detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-detail img {
+    margin-bottom: 10px;
+}
+
+.movie-detail p {
+    font-weight: bold;
+}
+
+.rating {
+    color: firebrick;
+}
+
+.category-name {
+    align-self: center;
+}
+
+.category-name a {
+    color: firebrick;
+    text-decoration: none;
+}
+
+.category-name a:hover {
+    color: black;
+}
+
+.home-footer {
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-footer a {
+    color: firebrick;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.home-footer a:hover {
+    color: black;
 }

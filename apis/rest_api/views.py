@@ -2,13 +2,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authtoken.models import Token
-from apis.models import Movie, UserProfile, Category
-from apis.serializer import MovieSerializer
+from apis.models import Movie, Category, Review
+from apis.serializer import MovieSerializer, ReviewSerializer
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.decorators import api_view
-from django.http import HttpResponse
 
 @api_view(['POST'])
 def login(request):
@@ -43,46 +42,78 @@ def signup(request):
 
     return Response({'message': 'Signup success!', 'status': 200}, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+def movie_list(request):
+    movie_list = Movie.objects.all()
+    serializer = MovieSerializer(movie_list, many=True)
+    return Response({'data': serializer.data, 'status': 200}, status=status.HTTP_200_OK)
 
-class LogoutView(APIView):
+@api_view(['GET'])
+def top_five_movies(request):
+    top_five = Movie.objects.order_by('-rating')[:5]
+    serializer = MovieSerializer(top_five, many=True)
+    return Response({'data': serializer.data, 'status': 200}, status=status.HTTP_200_OK)
 
-    def get(self, request):
-        return Response({'message': 'Logout success!', 'status': 200}, status=status.HTTP_200_OK)
+@api_view(['GET'])
+def movie_detail(request, movie_name_slug):
 
-class MovieListView(APIView):
-
-    def get(self, request):
-        movie_list = Movie.objects.all()
-        serializer = MovieSerializer(movie_list, many=True)
-        return JsonResponse(serializer.data, status=200, safe=False)
-
-class TopFiveMovies(APIView):
-
-    def get(self, request):
-        top_five = Movie.objects.order_by('-rating')[:5]
-        serializer = MovieSerializer(top_five, many=True)
-        return JsonResponse(serializer.data, status=200, safe=False)
-
-
-class MovieDetail(APIView):
-
-    def get(self, request, movie_name_slug):
+    try:
         movie = Movie.objects.get(slug=movie_name_slug)
-        serializer = MovieSerializer(movie)
-        return JsonResponse(serializer.data, status=200, safe=False)
+    except Movie.DoesNotExist:
+        movie = None
 
-class CategoryList(APIView):
+    if movie is None:
+        return Response({'message': "We can't find information about this movie", 'status': 'failed'}, status=status.HTTP_200_OK)
 
-    def get(self, request, category_name_slug):
+    serializer = MovieSerializer(movie)
 
-        try:
-            category = Category.objects.get(slug=category_name_slug)
-        except Category.DoesNotExist:
-            category = None
+    review = Review.objects.filter(movie_name=movie.movie_name)
+    r_serializer = ReviewSerializer(review, many=True)
 
-        if category is None:
-            return Response({'message': 'There are no movies in this category.', 'status': 200}, status=status.HTTP_200_OK)
+    user = []
 
-        movie_list = Movie.objects.filter(category=category)
-        serializer = MovieSerializer(movie_list, many=True)
-        return JsonResponse(serializer.data, status=200, safe=False)
+    for r in review:
+        user.append(r.user.username)
+
+    return Response({'data': serializer.data, 'review': r_serializer.data, 'status': 200, 'user': user}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def category_movie_list(request, category_name_slug):
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+    except Category.DoesNotExist:
+        category = None
+
+    if category is None:
+        return Response({'message': 'There are no movies in this category.', 'status': 'failed'}, status=status.HTTP_200_OK)
+
+    movie_list = Movie.objects.filter(category=category)
+    serializer = MovieSerializer(movie_list, many=True)
+    return Response({'data': serializer.data, 'status': 200}, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def write_review(request, movie_name_slug):
+    movie = Movie.objects.get(slug=movie_name_slug)
+
+    content = request.data.get('content')
+    username = request.data.get('username')
+    rating = request.data.get('rating')
+
+    user = User.objects.filter(username=username)[0]
+
+    Review.objects.create(user=user, movie_name=movie.movie_name, rating=rating, content=content)
+
+    return Response({'message': 'Add review success!', 'status': 200}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_all_review(request):
+    review = Review.objects.all()
+    r_serializer = ReviewSerializer(review, many=True)
+    return Response({'review': r_serializer.data, 'status': 200}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_latest_five_movies(request):
+    print('1111')
+    top_five = Movie.objects.order_by('-release_data')[:5]
+    serializer = MovieSerializer(top_five, many=True)
+    return Response({'data': serializer.data, 'status': 200}, status=status.HTTP_200_OK)
