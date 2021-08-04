@@ -2,8 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authtoken.models import Token
-from apis.models import Movie, UserProfile, Category
-from apis.serializer import MovieSerializer
+from apis.models import Movie, Category, Review
+from apis.serializer import MovieSerializer, ReviewSerializer
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -58,7 +58,16 @@ def top_five_movies(request):
 def movie_detail(request, movie_name_slug):
     movie = Movie.objects.get(slug=movie_name_slug)
     serializer = MovieSerializer(movie)
-    return Response({'data': serializer.data, 'status': 200}, status=status.HTTP_200_OK)
+
+    review = Review.objects.filter(movie_name=movie.movie_name)
+    r_serializer = ReviewSerializer(review, many=True)
+
+    user = []
+
+    for r in review:
+        user.append(r.user.username)
+
+    return Response({'data': serializer.data, 'review': r_serializer.data, 'status': 200, 'user': user}, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 def category_movie_list(request, category_name_slug):
@@ -73,3 +82,23 @@ def category_movie_list(request, category_name_slug):
     movie_list = Movie.objects.filter(category=category)
     serializer = MovieSerializer(movie_list, many=True)
     return Response({'data': serializer.data, 'status': 200}, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def write_review(request, movie_name_slug):
+    movie = Movie.objects.get(slug=movie_name_slug)
+
+    content = request.data.get('content')
+    username = request.data.get('username')
+    rating = request.data.get('rating')
+
+    user = User.objects.filter(username=username)[0]
+
+    Review.objects.create(user=user, movie_name=movie.movie_name, rating=rating, content=content)
+
+    return Response({'message': 'Add review success!', 'status': 200}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_all_review(request):
+    review = Review.objects.all()
+    r_serializer = ReviewSerializer(review, many=True)
+    return Response({'review': r_serializer.data, 'status': 200}, status=status.HTTP_200_OK)

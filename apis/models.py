@@ -19,8 +19,20 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+
+    movie_name = models.CharField(max_length=128, default='')
+    rating = models.FloatField(default=0)
+    content = models.CharField(max_length=128, default='')
+    likes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.user.username
+
 class Movie(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    review = models.ForeignKey(Review, on_delete=models.DO_NOTHING, null=True)
 
     movie_name = models.CharField(max_length=128, default='')
     director = models.CharField(max_length=128, default='')
