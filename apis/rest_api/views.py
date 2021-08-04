@@ -7,40 +7,41 @@ from apis.serializer import MovieSerializer
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from rest_framework.decorators import api_view
+from django.http import HttpResponse
 
-class LoginView(APIView):
-
-    def post(self, request):
-        username = request.data.get('username')
-        password = request.data.get('password')
-
-        user = authenticate(username=username, password=password)
-
-        if user:
-            if user.is_active:
-                token, created = Token.objects.get_or_create(user=user)
-                return Response({'message': 'Login success!', 'status': 200, 'token': token.key}, status=status.HTTP_200_OK)
-            else:
-                return Response({'message': 'Your account is disabled.', 'status': 'failed'}, status=status.HTTP_401_UNAUTHORIZED)
+@api_view(['POST'])
+def login(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+    user = authenticate(username=username, password=password)
+    if user:
+        if user.is_active:
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({'message': 'Login success!', 'status': 200, 'token': token.key}, status=status.HTTP_200_OK)
         else:
-            return Response({'message': 'Account or password error.', 'status': 'failed'},status=status.HTTP_401_UNAUTHORIZED)
+            return Response({'message': 'Your account is disabled.', 'status': 'failed'},
+                            status=status.HTTP_401_UNAUTHORIZED)
+    else:
+        return Response({'message': 'Account or password error.', 'status': 'failed'},
+                        status=status.HTTP_401_UNAUTHORIZED)
 
 
-class SignupView(APIView):
+@api_view(['POST'])
+def signup(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+    email = request.data.get('email')
 
-    def post(self, request):
-        username = request.data.get('username')
-        password = request.data.get('password')
-        email = request.data.get('email')
+    user = User.objects.filter(username=username)
 
-        user = User.objects.filter(username=username)
+    if len(user) != 0:
+        return Response({'message': 'Account already exists', 'status': 'failed'}, status=status.HTTP_200_OK)
 
-        if len(user) != 0:
-            return Response({'message': 'Account already exists', 'status': 'failed'}, status=status.HTTP_401_UNAUTHORIZED)
+    # Create User instance
+    User.objects.create_user(username, email, password)
 
-        # Create User instance
-        User.objects.create_user(username, email, password)
-        return Response({'message': 'Signup success!', 'status': 200}, status=status.HTTP_200_OK)
+    return Response({'message': 'Signup success!', 'status': 200}, status=status.HTTP_200_OK)
 
 
 class LogoutView(APIView):
