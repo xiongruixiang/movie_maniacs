@@ -3,7 +3,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'movie_maniacs.settings')
 
 import django
 django.setup()
-from apis.models import Movie, Category, UserProfile
+from apis.models import Movie, Category, UserProfile, Review
+from django.contrib.auth.models import User
 
 def populate():
 
@@ -118,16 +119,58 @@ def populate():
         'Crime': {'movie': crime_list}
     }
 
+    review_list = [
+        {
+            'movie': 'Tenet',
+            'content': 'this movie is excellent.',
+            'rating': 8.0,
+            'likes': 150,
+            'user': {
+                'username': 'user1',
+                'password': 'user1',
+                'email': 'user1@gmail.com'
+            }
+        },
+        {
+            'movie': 'F9',
+            'content': 'Not as good as the first few.',
+            'rating': 5.6,
+            'likes': 56,
+            'user': {
+                'username': 'user2',
+                'password': 'user2',
+                'email': 'user2@gmail.com'
+            }
+        },
+        {
+            'movie': 'Tenet',
+            'content': 'Too much brainstorming.',
+            'rating': 8.5,
+            'likes': 39,
+            'user': {
+                'username': 'user3',
+                'password': 'user3',
+                'email': 'user3@gmail.com'
+            }
+        }
+    ]
+
     for cat, cat_data in cats.items():
         c = add_cat(cat)
         for m in cat_data['movie']:
             add_movie(c, m)
 
+    for review in review_list:
+        username = review['user']['username']
+        email = review['user']['email']
+        password = review['user']['password']
+        u = add_user(username, email, password)
+        add_review(u, review['movie'], review['rating'], review['likes'], review['content'])
+
 def add_cat(name):
     c = Category.objects.get_or_create(name=name)[0]
     c.save()
     return c
-
 
 def add_movie(cat, movie_info):
     m = Movie.objects.get_or_create(category=cat, movie_name=movie_info['movie_name'])[0]
@@ -143,6 +186,15 @@ def add_movie(cat, movie_info):
     m.save()
     return m
 
+def add_user(username, email, password):
+    u = User.objects.create_user(username=username, email=email, password=password)
+    u.save()
+    return u
+
+def add_review(user, movie_name, rating, likes, content):
+    r = Review.objects.create(user=user, movie_name=movie_name, rating=rating, likes=likes, content=content)
+    r.save()
+    return r
 
 if __name__ == '__main__':
     populate()
