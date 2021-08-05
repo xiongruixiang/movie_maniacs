@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './index.css'
+import Header from "../../component/header";
 
 export default class About extends Component {
 
@@ -12,6 +13,7 @@ export default class About extends Component {
   render() {
     return (
       <html>
+      <Header />
       <div class="titleAboutUs">
           ABOUT US
       </div>
