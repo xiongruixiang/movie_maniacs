@@ -1,12 +1,19 @@
 .add-review {
     margin: auto;
     width: 50%;
+    background-color: #F8F9F9 ;
 }
 
 .add-rate-header {
     font-family:"Times New Roman";
     font-size: 22px;
     font-weight: bold;
+}
+
+.add-rate-header span {
+    color: firebrick;
+    font-size: 16px;
+    margin-left: 20px;
 }
 
 .add-review-header {
@@ -17,4 +24,14 @@
 
 .add-review-button {
     float: right;
+}
+
+.add-review-container {
+    background-color: #cccccc;
+}
+
+.submit-btn {
+    background-color: firebrick;
+    color: #fff;
+    border: 1px solid firebrick;
 }

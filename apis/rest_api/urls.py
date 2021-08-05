@@ -11,4 +11,5 @@ urlpatterns = [
     path('category/<slug:category_name_slug>/', views.category_movie_list, name='get_category_movies'),
     path('review/', views.get_all_review, name='get_all_review'),
     path('movie/<slug:movie_name_slug>/add-review/', views.write_review, name='write_review'),
+    path('movie/<slug:movie_name_slug>/add-likes/', views.add_likes, name='add_likes')
 ]

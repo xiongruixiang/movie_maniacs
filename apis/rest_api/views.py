@@ -115,7 +115,16 @@ def get_all_review(request):
 
 @api_view(['GET'])
 def get_latest_five_movies(request):
-    print('1111')
     top_five = Movie.objects.order_by('-release_date')[:5]
     serializer = MovieSerializer(top_five, many=True)
     return Response({'data': serializer.data, 'status': 200}, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def add_likes(request, movie_name_slug):
+    movie_name = request.data.get('movie_name')
+    new_likes = int(request.data.get('new_likes'))
+    review_index = int(request.data.get('review_index'))
+    review = Review.objects.filter(movie_name=movie_name)[review_index]
+    review.likes = new_likes
+    review.save()
+    return Response({'message': 'success', 'status': 200}, status=status.HTTP_200_OK)

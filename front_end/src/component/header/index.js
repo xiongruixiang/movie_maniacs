@@ -67,7 +67,13 @@ class Header extends Component {
 
     logout() {
         localStorage.clear()
-        this.props.history.push('/')
+        if (window.location.pathname === '/') {
+            this.setState({
+                username: ''
+            })
+        } else {
+            this.props.history.push('/')
+        }
     }
 
 
