@@ -17,13 +17,12 @@ const App = () => (
   <BrowserRouter>
     <div>
       <Route exact path="/" component={Home} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/movie" component={Movie} />
-      <Route path="/add-movie" component={AddMovie} />
-      <Route path="/about-us" component={About} />
-      <Route path="/movie-detail" component={MovieDetail} />
-      <Route path="/add-review" component={AddReview} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/signup" component={Signup} />
+      <Route exact path="/movie" component={Movie} />
+      <Route exact path="/add-movie" component={AddMovie} />
+      <Route exact path="/about-us" component={About} />
+      <Route exact path="/movie/:name" component={MovieDetail} />
     </div>
   </BrowserRouter>
 );

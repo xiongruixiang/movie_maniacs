@@ -1,6 +1,7 @@
-import React, { Component, createElement, useState } from 'react';
+import React, { Component, createElement } from 'react';
 import './index.css'
-import { Image, Descriptions, Space, Rate, Card, Button, Tooltip, List, Comment, Avatar, Statistic } from 'antd';
+import Header from '../../component/header'
+import { Image, Descriptions, Space, Rate, Card, Button, Tooltip, List, Comment, Avatar } from 'antd';
 import imagesMap from '../../constants/images-map'
 import { LikeOutlined, LikeFilled } from '@ant-design/icons';
 
@@ -28,6 +29,9 @@ export default class MovieDetail extends Component {
 
 
   render() {
+
+    console.log(this.props.location.state.movie_info)
+
     return (
 
       <div className="movie-page">
