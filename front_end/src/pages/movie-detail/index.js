@@ -1,8 +1,24 @@
-import React, {Component} from 'react';
+import React, { Component, createElement } from 'react';
 import './index.css'
 import Header from '../../component/header'
-import {Rate, Empty, Button} from "antd";
-import imagesMap from "../../constants/images-map";
+import { Image, Descriptions, Space, Rate, Card, Button, Tooltip, List, Comment, Avatar } from 'antd';
+import imagesMap from '../../constants/images-map'
+import { LikeOutlined, LikeFilled } from '@ant-design/icons';
+
+const data = [
+  {
+    user : 'user1',
+    rating : 3,
+    content : 'Good',
+    likes : 0
+  },
+  {
+    user : 'user2',
+    rating : 1,
+    content : 'Good',
+    likes : 1
+  }
+];
 
 export default class MovieDetail extends Component {
 
@@ -17,61 +33,98 @@ export default class MovieDetail extends Component {
 
 
     render() {
-        let {movie_info, review, user} = this.props.location.state
-        console.log(review)
-        console.log(user)
+
+        console.log(this.props.location.state.movie_info)
+
         return (
-            <div>
-                <Header/>
-                <div className='detail-wapper'>
-                    <div className='movie-detail-container'>
-                        <p className='movie-name'>{movie_info.movie_name}</p>
-                        <div className='movie-info'>
-                            <div>
-                                <img src={movie_info.image} alt='movie-poster' height='380' width='260'/>
-                            </div>
-                            <div className='movie-message'>
-                                <p><span>Director:</span> {movie_info.director}</p>
-                                <p><span>Leading actor:</span> {movie_info.leading_actor}</p>
-                                <p><span>Country of production:</span> {movie_info.country_of_production}</p>
-                                <p><span>Language:</span> {movie_info.language}</p>
-                                <p><span>Release data:</span> {movie_info.release_data}</p>
-                                <p><span>Length:</span> {movie_info.length}</p>
-                                <p><span>Rating:</span> {movie_info.rating}</p>
-                                <Rate disabled defaultValue={movie_info.rating}/>
-                            </div>
-                        </div>
-                        <p className='introduction'>
-                            <span className='intro-message'>Introduction: </span>
-                            {movie_info.introduction}
-                        </p>
-                        <div className='review'>
-                            <div className='write-button'>
-                                <p className='review-tip'>Review</p>
-                                <Button className='write-btn'>Write a Review</Button>
-                            </div>
-                            {review.length === 0 ? (
-                                <div className='empty-show'>
-                                    <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description='There is no review'/>
-                                    <a className='write-review-link'>Click here to write the first review!</a>
-                                </div>
-                            ) : review.map((item, index) => {
-                                return (
-                                    <div key={index}>
-                                        <p className='user-and-review'>{user[index]}:
-                                            <span> {item.content}</span>
-                                            <a className='likes' onClick={() => this.addLikes(index)}>&nbsp;&nbsp;&nbsp;&nbsp;<span>{item.likes}</span> likes</a>
-                                        </p>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
+
+            <div className="movie-page">
+
+                <div className="movie-name">
+                    movie_name
                 </div>
-                <footer className='home-footer'>
-                    <a>--The End--</a>
-                </footer>
+
+                <br/>
+
+                <div>
+                    <Space size={50}>
+                        <Image height={280} width={200} src={imagesMap.rango}/>
+                        <Descriptions bordered size={"small"} column={1}>
+                            <Descriptions.Item label="Director">director</Descriptions.Item>
+                            <Descriptions.Item label="Actor">leading_actor</Descriptions.Item>
+                            <Descriptions.Item label="Type"><a href="">category</a></Descriptions.Item>
+                            <Descriptions.Item label="Country of Production">country_of_production</Descriptions.Item>
+                            <Descriptions.Item label="Language">language</Descriptions.Item>
+                            <Descriptions.Item label="Release Date">release_data</Descriptions.Item>
+                            <Descriptions.Item label="Length">length</Descriptions.Item>
+                            <Descriptions.Item label="Rating">
+                                <Space>
+                                    rating
+                                    <Rate disabled defaultValue={3}/>
+                                </Space>
+                            </Descriptions.Item>
+                        </Descriptions>
+                    </Space>
+                </div>
+
+                <br/>
+
+                <div>
+                    <div className="introduction-header">
+                        Introduction
+                    </div>
+                    <Card>
+                        <p>introduction</p>
+                    </Card>
+                </div>
+
+                <br/>
+
+                <div className="review-header">
+                    Reviews ( {data.length} )
+                </div>
+
+                <div>
+                    <List
+                        className="comment-list"
+                        itemLayout="horizontal"
+                        dataSource={data}
+                        renderItem={item => (
+                            <li>
+                                <Card>
+                                    <Space>
+                                        Rating: {item.rating}
+                                        <Rate disabled defaultValue={item.rating}/>
+                                    </Space>
+                                    <Comment
+                                        avatar={<Avatar
+                                            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                                            alt="Han Solo"/>}
+                                        author={item.user}
+                                        content={item.content}
+                                        actions={[
+                                            <Tooltip key="comment-like" title="Like">
+                    <span>
+                      {/* 未实现点赞功能 onClick=... */}
+                        {createElement(item.action === 'liked' ? LikeFilled : LikeOutlined)}
+                        <span className="comment-action">{item.likes}</span>
+                    </span>
+                                            </Tooltip>
+                                        ]}
+                                    />
+                                </Card>
+                            </li>
+                        )}
+                    />
+                </div>
+
+                <br/>
+
+                <Button className="add-review-button" type="primary" href="/add-review">
+                    + Review
+                </Button>
+
             </div>
-        );
+        )
     }
 }

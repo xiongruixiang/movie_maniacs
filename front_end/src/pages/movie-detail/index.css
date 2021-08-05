@@ -1,3 +1,23 @@
+.movie-page {
+    margin: auto;
+    width: 80%;
+}
+
+.movie-name {
+    font-family:"Times New Roman";
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.introduction-header {
+    font-family:"Times New Roman";
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.review-header {
+    font-family: "Times New Roman";
+}
 .detail-wapper {
     display: flex;
     justify-content: center;
@@ -72,6 +92,10 @@
     font-weight: bold;
 }
 
+
+.add-review-button {
+    float: right;
+}
 .user-and-review span {
     font-weight: normal;
 }
