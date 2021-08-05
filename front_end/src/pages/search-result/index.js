@@ -19,7 +19,9 @@ export default class SearchResult extends Component {
                 this.props.history.push({
                     pathname: '/movie/' + name + '/',
                     state: {
-                        movie_info: result.data
+                        movie_info: result.data,
+                        review: result.review,
+                        user: result.user
                     }
                 })
             }
