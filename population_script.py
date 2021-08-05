@@ -397,10 +397,10 @@ def populate():
 
     review_list = [
         {
-            'movie': 'Tenet',
-            'content': 'this movie is excellent.',
-            'rating': 8.0,
-            'likes': 150,
+            'movie': 'The Suicide Squad',
+            'content': 'The most derivative but finely tuned of superhero movies to come out in ages.',
+            'rating': 3.2,
+            'likes': 10,
             'user': {
                 'username': 'user1',
                 'password': 'user1',
@@ -408,10 +408,10 @@ def populate():
             }
         },
         {
-            'movie': 'F9',
-            'content': 'Not as good as the first few.',
-            'rating': 5.6,
-            'likes': 56,
+            'movie': 'La vita è bella',
+            'content': 'Love these old movies!!!',
+            'rating': 3.0,
+            'likes': 26,
             'user': {
                 'username': 'user2',
                 'password': 'user2',
@@ -419,14 +419,311 @@ def populate():
             }
         },
         {
-            'movie': 'Tenet',
+            'movie': 'Cruella',
             'content': 'Too much brainstorming.',
-            'rating': 8.5,
+            'rating': 3.2,
             'likes': 39,
             'user': {
                 'username': 'user3',
                 'password': 'user3',
                 'email': 'user3@gmail.com'
+            }
+        },
+        {
+            'movie': 'Lady Bird',
+            'content': 'Love her personality here, and wish to see more about her.',
+            'rating': 2.6,
+            'likes': 16,
+            'user': {
+                'username': 'user4',
+                'password': 'user4',
+                'email': 'user4@gmail.com'
+            }
+        },
+        {
+            'movie': 'Lady Bird',
+            'content': 'The actress was soooo cool, she deserves an oskar',
+            'rating': 3.6,
+            'likes': 6,
+            'user': {
+                'username': 'user5',
+                'password': 'user5',
+                'email': 'user5@gmail.com'
+            }
+        },
+        {
+            'movie': 'Old',
+            'content': 'pretty good!',
+            'rating': 3.6,
+            'likes': 3,
+            'user': {
+                'username': 'user6',
+                'password': 'user6',
+                'email': 'user6@gmail.com'
+            }
+        },
+        {
+            'movie': 'The Dark Knigth',
+            'content': 'I will watch this for a couple of times in the next week, it was sooo good!',
+            'rating': 4.2,
+            'likes': 56,
+            'user': {
+                'username': 'user7',
+                'password': 'user7',
+                'email': 'user7@gmail.com'
+            }
+        },
+        {
+            'movie': 'The Silence of the Lambs',
+            'content': 'Old movie, but never out of fashion.',
+            'rating': 3.6,
+            'likes': 22,
+            'user': {
+                'username': 'user8',
+                'password': 'user8',
+                'email': 'user8@gmail.com'
+            }
+        },
+        {
+            'movie': 'Jolt',
+            'content': 'Not that good.',
+            'rating': 2.6,
+            'likes': 7,
+            'user': {
+                'username': 'user9',
+                'password': 'user9',
+                'email': 'user9@gmail.com'
+            }
+        },
+        {
+            'movie': 'Pig',
+            'content': 'I love the colour of the movie, it was dark tune.',
+            'rating': 2.6,
+            'likes': 18,
+            'user': {
+                'username': 'user10',
+                'password': 'user10',
+                'email': 'user10@gmail.com'
+            }
+        },
+        {
+            'movie': 'Twilight',
+            'content': 'Not as good as the first few.',
+            'rating': 2.6,
+            'likes': 56,
+            'user': {
+                'username': 'user11',
+                'password': 'user11',
+                'email': 'user11@gmail.com'
+            }
+        },
+        {
+            'movie': 'Titanic',
+            'content': 'Best movie forever.',
+            'rating': 4.5,
+            'likes': 108,
+            'user': {
+                'username': 'user12',
+                'password': 'user12',
+                'email': 'user12@gmail.com'
+            }
+        },
+        {
+            'movie': 'Avatar',
+            'content': 'The technology they used here was awesome!!!Love it.',
+            'rating': 4.7,
+            'likes': 139,
+            'user': {
+                'username': 'user13',
+                'password': 'user13',
+                'email': 'user13@gmail.com'
+            }
+        },
+        {
+            'movie': 'Lalaland',
+            'content': 'This movie taught me a lot, we should follow our dreams.',
+            'rating': 3.6,
+            'likes': 116,
+            'user': {
+                'username': 'user14',
+                'password': 'user14',
+                'email': 'user14@gmail.com'
+            }
+        },
+        {
+            'movie': 'The shape of water',
+            'content': 'Not that good as the comment.',
+            'rating': 2.6,
+            'likes': 33,
+            'user': {
+                'username': 'user15',
+                'password': 'user15',
+                'email': 'user15@gmail.com'
+            }
+        },
+        {
+            'movie': 'Blood Red Sky',
+            'content': 'Love the background music.',
+            'rating': 2.6,
+            'likes': 12,
+            'user': {
+                'username': 'user16',
+                'password': 'user16',
+                'email': 'user16@gmail.com'
+            }
+        },
+        {
+            'movie': 'A Quiet Place Part 2',
+            'content': 'Tooooo short.',
+            'rating': 3.0,
+            'likes': 25,
+            'user': {
+                'username': 'user17',
+                'password': 'user17',
+                'email': 'user17@gmail.com'
+            }
+        },
+        {
+            'movie': 'It',
+            'content': 'It was a good movie, and i hate the bad guy there.',
+            'rating': 3.1,
+            'likes': 156,
+            'user': {
+                'username': 'user18',
+                'password': 'user18',
+                'email': 'user18@gmail.com'
+            }
+        },
+        {
+            'movie': 'The Hunt',
+            'content': 'It was good, and the cast was great.',
+            'rating': 3.6,
+            'likes': 22,
+            'user': {
+                'username': 'user19',
+                'password': 'user19',
+                'email': 'user19@gmail.com'
+            }
+        },
+        {
+            'movie': 'Escape Room',
+            'content': 'It was thrilling. I really want to play it after watching it.',
+            'rating': 3.2,
+            'likes': 36,
+            'user': {
+                'username': 'user20',
+                'password': 'user20',
+                'email': 'user20@gmail.com'
+            }
+        },
+        {
+            'movie': 'Tenet',
+            'content': 'Best movie from Nolan.',
+            'rating': 4.5,
+            'likes': 128,
+            'user': {
+                'username': 'user21',
+                'password': 'user21',
+                'email': 'user21@gmail.com'
+            }
+        },
+        {
+            'movie': 'Black Widow',
+            'content': 'I think this movie is suitable for watching in the cinema, but the cinema is on lockdown now.',
+            'rating': 2.7,
+            'likes': 139,
+            'user': {
+                'username': 'user22',
+                'password': 'user22',
+                'email': 'user22@gmail.com'
+            }
+        },
+        {
+            'movie': 'The Tomorrow War',
+            'content': 'The special effects were great, but the story was mediocre.',
+            'rating': 2.6,
+            'likes': 116,
+            'user': {
+                'username': 'user23',
+                'password': 'user23',
+                'email': 'user23@gmail.com'
+            }
+        },
+        {
+            'movie': 'Nobody',
+            'content': 'I think the interpretation of the character is very good.',
+            'rating': 3.1,
+            'likes': 23,
+            'user': {
+                'username': 'user24',
+                'password': 'user24',
+                'email': 'user24@gmail.com'
+            }
+        },
+        {
+            'movie': 'Dune',
+            'content': 'Good.',
+            'rating': 3.6,
+            'likes': 22,
+            'user': {
+                'username': 'user25',
+                'password': 'user25',
+                'email': 'user25@gmail.com'
+            }
+        },
+        {
+            'movie': 'F9',
+            'content': 'Not that good.',
+            'rating': 2.0,
+            'likes': 20,
+            'user': {
+                'username': 'user26',
+                'password': 'user26',
+                'email': 'user26@gmail.com'
+            }
+        },
+        {
+            'movie': 'Pulp Fiction',
+            'content': 'I saw this movie when I was a kid. It was a classic.',
+            'rating': 3.9,
+            'likes': 256,
+            'user': {
+                'username': 'user27',
+                'password': 'user27',
+                'email': 'user27@gmail.com'
+            }
+        },
+        {
+            'movie': 'Joker',
+            'content': 'The idea of the film is very thought-provoking, let us have more thinking about the society.',
+            'rating': 3.6,
+            'likes': 232,
+            'user': {
+                'username': 'user28',
+                'password': 'user28',
+                'email': 'user28@gmail.com'
+            }
+        },
+        {
+            'movie': 'Zola',
+            'content': 'Just soso.',
+            'rating': 2.6,
+            'likes': 26,
+            'user': {
+                'username': 'user29',
+                'password': 'user29',
+                'email': 'user29@gmail.com'
+            }
+        },
+        {
+            'movie': 'Heat',
+            'content': 'I like the directors way of expression.',
+            'rating': 3.2,
+            'likes': 36,
+            'user': {
+                'username': 'user30',
+                'password': 'user30',
+                'email': 'user30@gmail.com'
             }
         }
     ]
