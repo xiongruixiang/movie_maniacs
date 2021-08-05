@@ -3,7 +3,6 @@ import './index.css'
 import { Form, Space, Rate, Input, Button } from 'antd';
 
 const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
-const { TextArea } = Input;
 
 export default class AddReview extends Component {
 
