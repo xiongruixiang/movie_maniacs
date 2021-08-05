@@ -39,7 +39,7 @@ class Movie(models.Model):
     leading_actor = models.CharField(max_length=128, default='')
     country_of_production = models.CharField(max_length=50, default='')
     language = models.CharField(max_length=50, default='')
-    release_data = models.CharField(max_length=50, default='')
+    release_date = models.CharField(max_length=50, default='')
     length = models.CharField(max_length=50, default='')
     introduction = models.TextField(default='')
     rating = models.FloatField(default=0)
