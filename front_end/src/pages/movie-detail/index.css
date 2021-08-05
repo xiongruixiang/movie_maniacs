@@ -118,3 +118,7 @@
     font-style: italic;
     font-weight: normal;
 }
+
+.detail-footer {
+    height: 80px;
+}

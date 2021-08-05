@@ -36,7 +36,12 @@ export default class AddReview extends Component {
                     rating: this.state.value
                 }
                 $.post(url, params, (result) => {
-                    console.log(result)
+                    this.props.history.push({
+                        pathname: '/movie/' + movie_name + '/',
+                        state: {
+                            movie_name_slug: movie_name
+                        }
+                    })
                 })
             }
         }

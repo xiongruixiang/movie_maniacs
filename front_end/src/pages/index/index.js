@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './index.css'
 import imagesMap from '../../constants/images-map'
-import { Button, Rate } from "antd";
+import {Button, Rate} from "antd";
 import $ from 'jquery'
 import category from '../../constants/category'
 import Header from '../../component/header'
@@ -45,7 +45,7 @@ export default class Home extends Component {
     }
 
     movieList() {
-        let { latestMovies } = this.state
+        let {latestMovies} = this.state
         latestMovies.map((index, item) => {
             console.log(item)
         })
@@ -53,18 +53,11 @@ export default class Home extends Component {
     }
 
     goToMovieDetail(movie_name) {
-        let name = movie_name.toLowerCase().split(' ').join('-')
-        let url="http://127.0.0.1:8000/api/movie/" + name + "/"
-        $.get(url, (result) => {
-            if (result.status === 200) {
-                this.props.history.push({
-                    pathname: '/movie/' + name + '/',
-                    state: {
-                        movie_info: result.data,
-                        review: result.review,
-                        user: result.user
-                    }
-                })
+        let movie_name_slug = movie_name.toLowerCase().split(' ').join('-')
+        this.props.history.push({
+            pathname: '/movie/' + movie_name_slug + '/',
+            state: {
+                movie_name_slug: movie_name_slug
             }
         })
     }
@@ -83,27 +76,37 @@ export default class Home extends Component {
         })
     }
 
+    goToAllMoviePage() {
+        this.props.history.push({
+            pathname: '/movie-list',
+        })
+    }
+
 
     render() {
-        let { latestMovies, topFiveMovies } = this.state
+        let {latestMovies, topFiveMovies} = this.state
         return (
             <div>
                 <div className='home-header'>
-                    <Header />
-                    <img src={imagesMap.banner} className='banner' alt='banner' />
+                    <Header/>
+                    <img src={imagesMap.banner} className='banner' alt='banner'/>
                 </div>
                 <div className='home-latest-list'>
                     <p className='title sub-title'>Explore what's streaming</p>
                     <div className='latest-movie-list'>
                         {latestMovies.map((item, index) => (
-                            <div className='movie-detail' key={index} onClick={() => this.goToMovieDetail(item.movie_name)}>
+                            <div className='movie-detail' key={index}
+                                 onClick={() => this.goToMovieDetail(item.movie_name)}>
                                 <img src={item.image} alt='movie-name' height='280' width='200'/>
                                 <p>Name: {item.movie_name}</p>
                                 <p>Director: {item.director}</p>
                                 <p>Rating: <span className='rating'>{item.rating}</span></p>
-                                <Rate disabled defaultValue={item.rating} />
+                                <Rate disabled defaultValue={item.rating}/>
                             </div>
                         ))}
+                        <div className='get-more'>
+                            <button onClick={() => this.goToAllMoviePage()}>Get More Movies</button>
+                        </div>
                     </div>
                 </div>
                 <div className='category-list'>
@@ -121,12 +124,12 @@ export default class Home extends Component {
                     <p className='title sub-title'>Top 5 movies</p>
                     <div className='latest-movie-list'>
                         {topFiveMovies.map((item, index) => (
-                            <div className='movie-detail' key={index}>
+                            <div className='movie-detail' key={index} onClick={() => this.goToMovieDetail(item.movie_name)}>
                                 <img src={item.image} alt='movie-name' height='280' width='200'/>
                                 <p>Name: {item.movie_name}</p>
                                 <p>Director: {item.director}</p>
                                 <p>Rating: <span className='rating'>{item.rating}</span></p>
-                                <Rate disabled defaultValue={item.rating} />
+                                <Rate disabled defaultValue={item.rating}/>
                             </div>
                         ))}
                     </div>

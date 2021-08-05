@@ -13,7 +13,30 @@ export default class MovieDetail extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            movie_info: [],
+            review: [],
+            user: []
+        }
+    }
+
+    componentDidMount() {
+        let {movie_name_slug} = this.props.location.state
+        this.getMovieDetail(movie_name_slug)
+    }
+
+    getMovieDetail(movie_name) {
+        let movie_name_slug = movie_name.toLowerCase().split(' ').join('-')
+        let url = "http://127.0.0.1:8000/api/movie/" + movie_name_slug + "/"
+        $.get(url, (result) => {
+            if (result.status === 200) {
+                this.setState({
+                    movie_info: result.data,
+                    review: result.review,
+                    user: result.user
+                })
+            }
+        })
     }
 
     addLikes(index, movie_name) {
@@ -30,14 +53,7 @@ export default class MovieDetail extends Component {
                 review_index: index
             }
             $.post(url, params, (result) => {
-                console.log(result)
                 if (result.status === 200) {
-                    this.props.history.push({
-                        pathname: '/movie/' + slug_name,
-                        state: {
-                            movie_name: slug_name
-                        }
-                    })
                 }
             })
         } else {
@@ -62,8 +78,8 @@ export default class MovieDetail extends Component {
 
 
     render() {
-        let {movie_info, review, user} = this.props.location.state
-        let slug_name = movie_info.movie_name.toLowerCase().split(' ').join('-')
+        let {movie_info, review, user} = this.state
+        let {movie_name_slug} = this.props.location.state
         return (
             <div>
                 <Header/>
@@ -88,8 +104,7 @@ export default class MovieDetail extends Component {
                                 <Descriptions.Item label="Length">{movie_info.length}</Descriptions.Item>
                                 <Descriptions.Item label="Rating">
                                     <Space>
-                                        rating
-                                        <Rate disabled defaultValue={movie_info.rating}/>
+                                        {movie_info.rating}
                                     </Space>
                                 </Descriptions.Item>
                             </Descriptions>
@@ -149,11 +164,12 @@ export default class MovieDetail extends Component {
 
                     <br/>
 
-                    <Button className="add-review-button" onClick={() => this.goToAddReviewPage(slug_name)}>
+                    <Button className="add-review-button" onClick={() => this.goToAddReviewPage(movie_name_slug)}>
                         + Review
                     </Button>
 
                 </div>
+                <footer className='detail-footer'/>
             </div>
         )
     }

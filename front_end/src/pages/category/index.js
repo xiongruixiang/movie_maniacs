@@ -51,9 +51,9 @@ export default class Category extends Component {
             <div>
                 <Header />
                 <p className='title sub-title'>{categoryName} Movies</p>
-                <div className='latest-movie-list'>
+                <div className='all-movie-list'>
                         {movieList.map((item, index) => (
-                            <div className='movie-detail' key={index} onClick={() => this.goToMovieDetail(item.movie_name)}>
+                            <div className='each-movie-detail' key={index} onClick={() => this.goToMovieDetail(item.movie_name)}>
                                 <img src={item.image} alt='movie-name' height='280' width='200'/>
                                 <p>Name: {item.movie_name}</p>
                                 <p>Director: {item.director}</p>
