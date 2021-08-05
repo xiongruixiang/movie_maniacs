@@ -95,6 +95,8 @@
 
 .add-review-button {
     float: right;
+    color: #fff;
+    background-color: firebrick;
 }
 .user-and-review span {
     font-weight: normal;
