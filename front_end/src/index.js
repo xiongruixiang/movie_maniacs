@@ -10,7 +10,8 @@ import Movie from "./pages/movie";
 import AddMovie from './pages/add-movie';
 import About from './pages/about-us';
 import MovieDetail from './pages/movie-detail'
-
+import Category from './pages/category'
+import SearchResult from './pages/search-result'
 
 const App = () => (
   <BrowserRouter>
@@ -22,6 +23,8 @@ const App = () => (
       <Route exact path="/add-movie" component={AddMovie} />
       <Route exact path="/about-us" component={About} />
       <Route exact path="/movie/:name" component={MovieDetail} />
+      <Route exact path="/category/:name" component={Category} />
+      <Route exact path="/search-result" component={SearchResult} />
     </div>
   </BrowserRouter>
 );
