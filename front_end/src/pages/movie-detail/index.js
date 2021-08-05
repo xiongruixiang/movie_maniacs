@@ -55,7 +55,7 @@ export default class MovieDetail extends Component {
                             <Descriptions.Item label="Type"><a href="">category</a></Descriptions.Item>
                             <Descriptions.Item label="Country of Production">country_of_production</Descriptions.Item>
                             <Descriptions.Item label="Language">language</Descriptions.Item>
-                            <Descriptions.Item label="Release Date">release_data</Descriptions.Item>
+                            <Descriptions.Item label="Release Date">release_date</Descriptions.Item>
                             <Descriptions.Item label="Length">length</Descriptions.Item>
                             <Descriptions.Item label="Rating">
                                 <Space>

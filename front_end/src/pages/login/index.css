@@ -16,8 +16,27 @@
 
 .login-button {
     width: 100%;
+    background-color: firebrick;
+    color: #fff;
+    border: 1px solid firebrick;
+}
+
+.login-button:hover {
+    background-color: #fff;
+    color: firebrick;
+    border: 1px solid firebrick;
 }
 
 .login-signup {
+    text-align: center;
+}
+
+.login-signup a {
+    color: firebrick;
+}
+
+.show-message {
+    color: firebrick;
+    font-weight: bold;
     text-align: center;
 }

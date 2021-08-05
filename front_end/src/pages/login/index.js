@@ -1,101 +1,95 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './index.css'
-import { Form, Input, Button } from 'antd';
-import { MailOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import {Form, Input, Button} from 'antd';
+import {MailOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone} from '@ant-design/icons';
+import $ from 'jquery'
+import Header from "../../component/header";
 
 export default class Login extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            showMessage: false,
+            message: ''
+        }
     }
 
 
     onFinish = (values) => {
-      console.log(values);
+        let url = 'http://127.0.0.1:8000/api/login/'
+        $.post(url, values, (result) => {
+            if (result.status === 200) {
+                localStorage.setItem('username', values.username)
+                localStorage.setItem('token', result.token)
+                this.props.history.push('/')
+            } else if (result.status === 'failed') {
+                this.setState({
+                    message: result.message,
+                    showMessage: true
+                })
+            }
+        })
     };
 
-  render() {
-    return (
+    goToSignupPage() {
+        this.props.history.push('/signup')
+    }
 
-      <Form
-      name="login"
-      className="login"
-      onFinish={this.onFinish}
-      >
+    render() {
+        let {message, showMessage} = this.state
+        return (
 
-        <Form.Item className="login-header">
-          <br/>
-          Log in
-        </Form.Item>
+            <div>
+                <Header/>
+                <Form
+                    name="login"
+                    className="login"
+                    onFinish={this.onFinish}
+                >
 
-        <Form.Item
-        name="email"
-        rules={[{ required: true, message: 'Please enter your Email!' }]}
-        >
-          <Input prefix={<MailOutlined />} placeholder="Email" />
-        </Form.Item>
+                    <Form.Item className="login-header">
+                        <br/>
+                        Log in
+                    </Form.Item>
 
-        <Form.Item
-        name="password"
-        rules={[{ required: true, message: 'Please enter your Password!' }]}
-        >
-          <Input.Password
-          // type="password"
-          prefix={<LockOutlined />}
-          placeholder="Password"
-          iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-          />
-        </Form.Item>
+                    <Form.Item
+                        name="username"
+                        rules={[{required: true, message: 'Please enter your Email!'}]}
+                    >
+                        <Input prefix={<MailOutlined/>} placeholder="Username"/>
+                    </Form.Item>
 
-        <Form.Item>
-          <a className="forgot-password" href="">
-            Forgot your password?
-          </a>
-        </Form.Item>
+                    <Form.Item
+                        name="password"
+                        rules={[{required: true, message: 'Please enter your Password!'}]}
+                    >
+                        <Input.Password
+                            // type="password"
+                            prefix={<LockOutlined/>}
+                            placeholder="Password"
+                            iconRender={visible => (visible ? <EyeTwoTone/> : <EyeInvisibleOutlined/>)}
+                        />
+                    </Form.Item>
 
-        <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-button">
-            Log in
-          </Button>
-        </Form.Item>
+                    {showMessage && (
+                        <Form.Item className='show-message'>
+                            <p>{message}</p>
+                        </Form.Item>
+                    )}
 
-        <Form.Item className="login-signup">
-          Don't have an account? <a href="/signup">Sign up.</a>
-        </Form.Item>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit" className="login-button">
+                            Log in
+                        </Button>
+                    </Form.Item>
 
-      </Form>
+                    <Form.Item className="login-signup">
+                        No account? <a onClick={() => this.goToSignupPage()}>Sign up</a>
+                    </Form.Item>
 
-    //   <div className='login'>
-
-    //     <div className='login-header'>
-    //       <br/>
-    //       <p>Log in</p>
-    //     </div>
-
-    //     <Input placeholder="Email" prefix={<MailOutlined />} />
-    //     <br/><br/>
-
-    //     <Input.Password
-    //     placeholder="Password"
-    //     prefix={<LockOutlined />}
-    //     iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-    //     />
-
-    //     <div className='forget-password-link'>
-    //       <Button type="link">Forget your password?</Button>
-    //       <br/><br/>
-    //     </div>
-
-    //     <Button type="primary" block>Log in</Button>
-    //     <br/><br/>
-
-    //     <div>
-    //       Don't have an account?
-    //       <Button type="link">Sign up.</Button>
-    //     </div>
-
-    // </div>
-    );
-  }
+                </Form>
+            </div>
+        );
+    }
 }

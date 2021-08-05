@@ -12,8 +12,21 @@
 
 .signup-button {
     width: 100%;
+    background-color: firebrick;
+    color: #fff;
+    border: 1px solid firebrick;
+}
+
+.signup-button:hover {
+    background-color: #fff;
+    color: firebrick;
+    border: 1px solid firebrick;
 }
 
 .signup-login {
     text-align: center;
+}
+
+.signup-login a {
+    color: firebrick;
 }

@@ -9,7 +9,8 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchName: ''
+            searchName: '',
+            username: localStorage.getItem('username')
         }
     }
 
@@ -52,8 +53,26 @@ class Header extends Component {
         })
     }
 
+    goToLoginPage() {
+        this.props.history.push({
+            pathname: '/login'
+        })
+    }
+
+    goToSignupPage() {
+        this.props.history.push({
+            pathname: '/signup'
+        })
+    }
+
+    logout() {
+        localStorage.clear()
+        this.props.history.push('/')
+    }
+
 
     render() {
+        let {username} = this.state
         return (
             <div className='home-top'>
                 <p className='title' onClick={() => this.goToHomepage()}>Movie-Maniacs</p>
@@ -61,8 +80,19 @@ class Header extends Component {
                     <input className='search-input' placeholder='Search Movie'
                            onChange={(e) => this.getSearchMovie(e)}/>
                     <Button className='home-button' onClick={() => this.searchMovie()}>Search</Button>
-                    <Button className='home-button login-btn'>Login</Button>
-                    <Button className='home-button signup-btn'>Signup</Button>
+                    {username ? (
+                        <div>
+                            <Button className='home-button login-btn show-username'>Hi, {username}</Button>
+                            <Button className='home-button signup-btn' onClick={() => this.logout()}>Logout</Button>
+                        </div>
+                    ) : (
+                        <div>
+                            <Button className='home-button login-btn'
+                                    onClick={() => this.goToLoginPage()}>Login</Button>
+                            <Button className='home-button signup-btn'
+                                    onClick={() => this.goToSignupPage()}>Signup</Button>
+                        </div>
+                    )}
                 </div>
             </div>
         );

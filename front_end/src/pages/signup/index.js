@@ -1,138 +1,137 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './index.css'
-import { Form, Input, Button } from 'antd';
-import { UserOutlined, MailOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import {Form, Input, Button} from 'antd';
+import {UserOutlined, MailOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone} from '@ant-design/icons';
+import $ from 'jquery'
+import Header from "../../component/header";
 
 export default class Signup extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            message: '',
+            showMessage: false
+        }
     }
 
 
-  onFinish = (values) => {
-    console.log(values);
-  };
-
-  render() {
-    return (
-
-      <Form
-      name="signup"
-      className="signup"
-      onFinish={this.onFinish}
-      layout="vertical"
-      >
-
-        <Form.Item className="signup-header">
-          <br/>
-          Sign up
-        </Form.Item>
-
-        <Form.Item
-        label="User ID"
-        name="userID"
-        rules={[{ required: true, message: 'Please enter your User ID!' }]}
-        >
-          <Input prefix={<UserOutlined />} />
-        </Form.Item>
-
-        <Form.Item
-        label="Email"
-        name="email"
-        rules={[
-          { required: true, message: 'Please enter your Email!' },
-          { type: 'email', message: 'The Email is not valid!' }
-        ]}
-        >
-          <Input prefix={<MailOutlined />} />
-        </Form.Item>
-
-        <Form.Item
-        label="Password"
-        name="password"
-        hasFeedback
-        rules={[{ required: true, message: 'Please enter your Password!' }]}
-        >
-          <Input.Password
-          prefix={<LockOutlined />}
-          iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-          />
-        </Form.Item>
-
-        <Form.Item
-        label="Re-enter password"
-        name="reEnter"
-        dependencies={['password']}
-        hasFeedback
-        rules={[
-          { required: true, message: 'Please re-enter your Password!' },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue('password') == value) {
-                return Promise.resolve();
-              }
-              return Promise.reject(new Error('The two passwords you entered do not match!'));
+    onFinish = (values) => {
+        let url = 'http://127.0.0.1:8000/api/signup/'
+        let params = {
+            username: values.username,
+            password: values.password,
+            email: values.email
+        }
+        $.post(url, params, (result) => {
+            console.log(result)
+            if (result.status === 200) {
+                localStorage.setItem('username', values.username)
+                localStorage.setItem('token', result.token)
+                this.props.history.push('/')
+            } else if (result.status === 'failed') {
+                this.setState({
+                    message: result.message,
+                    showMessage: true
+                })
             }
-          })
-        ]}
-        >
-          <Input.Password
-          prefix={<LockOutlined />}
-          iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-          />
-        </Form.Item>
+        })
+    };
 
-        <Form.Item>
-          <br/>
-          <Button type="primary" htmlType="submit" className="signup-button">
-            Sign up
-          </Button>
-        </Form.Item>
+    goToLoginPage() {
+        this.props.history.push('/login')
+    }
 
-        <Form.Item className="signup-login">
-          Already have an account? <a href="/login">Log in.</a>
-        </Form.Item>
+    render() {
+        let {showMessage, message} = this.state
+        return (
+            <div>
+                <Header/>
+                <Form
+                    name="signup"
+                    className="signup"
+                    onFinish={this.onFinish}
+                    layout="vertical"
+                >
 
-      </Form>
+                    <Form.Item className="signup-header">
+                        <br/>
+                        Sign up
+                    </Form.Item>
 
-      // <div className='signup'>
+                    <Form.Item
+                        label="Username"
+                        name="username"
+                        rules={[{required: true, message: 'Please enter your User ID!'}]}
+                    >
+                        <Input prefix={<UserOutlined/>}/>
+                    </Form.Item>
 
-      //   <div className='signup-header'>
-      //     <br/>
-      //     <p>Sign up</p>
-      //   </div>
+                    <Form.Item
+                        label="Email"
+                        name="email"
+                        rules={[
+                            {required: true, message: 'Please enter your Email!'},
+                            {type: 'email', message: 'The Email is not valid!'}
+                        ]}
+                    >
+                        <Input prefix={<MailOutlined/>}/>
+                    </Form.Item>
 
-      //   <Input placeholder="User ID" prefix={<UserOutlined />} />
-      //   <br/><br/>
+                    <Form.Item
+                        label="Password"
+                        name="password"
+                        hasFeedback
+                        rules={[{required: true, message: 'Please enter your Password!'}]}
+                    >
+                        <Input.Password
+                            prefix={<LockOutlined/>}
+                            iconRender={visible => (visible ? <EyeTwoTone/> : <EyeInvisibleOutlined/>)}
+                        />
+                    </Form.Item>
 
-      //   <Input placeholder="Email" prefix={<MailOutlined />} />
-      //   <br/><br/>
+                    <Form.Item
+                        label="Re-enter password"
+                        name="reEnter"
+                        dependencies={['password']}
+                        hasFeedback
+                        rules={[
+                            {required: true, message: 'Please re-enter your Password!'},
+                            ({getFieldValue}) => ({
+                                validator(_, value) {
+                                    if (!value || getFieldValue('password') == value) {
+                                        return Promise.resolve();
+                                    }
+                                    return Promise.reject(new Error('The two passwords you entered do not match!'));
+                                }
+                            })
+                        ]}
+                    >
+                        <Input.Password
+                            prefix={<LockOutlined/>}
+                            iconRender={visible => (visible ? <EyeTwoTone/> : <EyeInvisibleOutlined/>)}
+                        />
+                    </Form.Item>
 
-      //   <Input.Password
-      //   placeholder="Password"
-      //   prefix={<LockOutlined />}
-      //   iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-      //   />
-      //   <br/><br/>
+                    {showMessage && (
+                        <Form.Item className='show-message'>
+                            <p>{message}</p>
+                        </Form.Item>
+                    )}
 
-      //   <Input.Password
-      //   placeholder="Re-enter password"
-      //   prefix={<LockOutlined />}
-      //   iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-      //   />
-      //   <br/><br/>
+                    <Form.Item>
+                        <br/>
+                        <Button type="primary" htmlType="submit" className="signup-button">
+                            Sign up
+                        </Button>
+                    </Form.Item>
 
-      //   <Button type="primary" block>Sign up</Button>
-      //   <br/><br/>
+                    <Form.Item className="signup-login">
+                        Already have an account? <a onClick={() => this.goToLoginPage()}>Log in.</a>
+                    </Form.Item>
 
-      //   <div>
-      //     Already have an account?
-      //     <Button type="link">Log in.</Button>
-      //   </div>
-
-      // </div>
-    );
-  }
+                </Form>
+            </div>
+        );
+    }
 }

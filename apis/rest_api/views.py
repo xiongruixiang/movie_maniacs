@@ -19,11 +19,9 @@ def login(request):
             token, created = Token.objects.get_or_create(user=user)
             return Response({'message': 'Login success!', 'status': 200, 'token': token.key}, status=status.HTTP_200_OK)
         else:
-            return Response({'message': 'Your account is disabled.', 'status': 'failed'},
-                            status=status.HTTP_401_UNAUTHORIZED)
+            return Response({'message': 'Your account is disabled.', 'status': 'failed'}, status=status.HTTP_200_OK)
     else:
-        return Response({'message': 'Account or password error.', 'status': 'failed'},
-                        status=status.HTTP_401_UNAUTHORIZED)
+        return Response({'message': 'Account or password error.', 'status': 'failed'}, status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])
@@ -40,7 +38,11 @@ def signup(request):
     # Create User instance
     User.objects.create_user(username, email, password)
 
-    return Response({'message': 'Signup success!', 'status': 200}, status=status.HTTP_200_OK)
+    user = authenticate(username=username, password=password)
+
+    token, created = Token.objects.get_or_create(user=user)
+
+    return Response({'message': 'Signup success!', 'status': 200, 'token': token.key}, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 def movie_list(request):
@@ -114,6 +116,6 @@ def get_all_review(request):
 @api_view(['GET'])
 def get_latest_five_movies(request):
     print('1111')
-    top_five = Movie.objects.order_by('-release_data')[:5]
+    top_five = Movie.objects.order_by('-release_date')[:5]
     serializer = MovieSerializer(top_five, many=True)
     return Response({'data': serializer.data, 'status': 200}, status=status.HTTP_200_OK)
