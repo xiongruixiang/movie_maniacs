@@ -1,0 +1,12 @@
+.message {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 40px;
+}
+
+.empty-show {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

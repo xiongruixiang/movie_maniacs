@@ -44,31 +44,11 @@ export default class Home extends Component {
         })
     }
 
-    getSearchMovie(e) {
-        this.setState({
-            searchName: e.target.value.toLowerCase()
-        })
-    }
-
-    searchMovie() {
-        let { searchName } = this.state
-        let movie_name = searchName.split(' ').join('-')
-        // let url="http://127.0.0.1:8000/api/movie/" + movie_name + "/"
-        // $.get(url, (result) => {
-        //     console.log(result)
-        //     // do something
-        // })
-    }
-
     movieList() {
         let { latestMovies } = this.state
         latestMovies.map((index, item) => {
             console.log(item)
         })
-
-    }
-
-    goToMovieListByCat(category) {
 
     }
 
@@ -83,6 +63,20 @@ export default class Home extends Component {
                         movie_info: result.data
                     }
                 })
+            }
+        })
+    }
+
+    goToAboutUs() {
+        this.props.history.push('/about-us/')
+    }
+
+    goToCategory(name) {
+        let categoryName = name.toLowerCase()
+        this.props.history.push({
+            pathname: '/category/' + categoryName + '/',
+            state: {
+                categoryName: name
             }
         })
     }
@@ -114,9 +108,9 @@ export default class Home extends Component {
                     <p className='title sub-title'>Categories</p>
                     <div className='latest-movie-list'>
                         {category.map((item, index) => (
-                            <div className='movie-detail' key={index}>
+                            <div className='movie-detail' key={index} onClick={() => this.goToCategory(item.name)}>
                                 <img src={item.image} alt='movie-name' height='280' width='200'/>
-                                <p className='category-name'><a onClick={() => this.goToMovieListByCat()}>{item.name}</a></p>
+                                <p className='category-name'><a>{item.name}</a></p>
                             </div>
                         ))}
                     </div>
@@ -136,7 +130,7 @@ export default class Home extends Component {
                     </div>
                 </div>
                 <footer className='home-footer'>
-                    <a>--about us--</a>
+                    <a onClick={() => this.goToAboutUs()}>--about us--</a>
                 </footer>
             </div>
         )

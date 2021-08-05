@@ -63,7 +63,7 @@ def movie_detail(request, movie_name_slug):
         movie = None
 
     if movie is None:
-        return Response({'message': "We can't find information about this movie", 'status': 'failed'}, status=status.HTTP_200_OK)
+        return Response({'message': "Sorry, we can't find any information about this movie.", 'status': 'failed'}, status=status.HTTP_200_OK)
 
     serializer = MovieSerializer(movie)
 
