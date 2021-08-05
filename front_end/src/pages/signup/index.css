@@ -1,0 +1,19 @@
+.signup {
+    margin: auto;
+    width: 25%;
+}
+
+.signup-header {
+    font-family:"Times New Roman";
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.signup-button {
+    width: 100%;
+}
+
+.signup-login {
+    text-align: center;
+}

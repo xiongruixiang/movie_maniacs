@@ -9,7 +9,8 @@ import Signup from "./pages/signup";
 import Movie from "./pages/movie";
 import AddMovie from './pages/add-movie';
 import About from './pages/about-us';
-import MovieDetail from './pages/movie-detail'
+import MovieDetail from './pages/movie-detail';
+import AddReview from "./pages/add-review";
 
 
 const App = () => (
