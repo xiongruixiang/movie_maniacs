@@ -1,0 +1,20 @@
+.add-review {
+    margin: auto;
+    width: 50%;
+}
+
+.add-rate-header {
+    font-family:"Times New Roman";
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.add-review-header {
+    font-family:"Times New Roman";
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.add-review-button {
+    float: right;
+}

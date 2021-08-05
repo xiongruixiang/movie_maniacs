@@ -4,6 +4,7 @@ import imagesMap from '../../constants/images-map'
 import { Button, Rate } from "antd";
 import $ from 'jquery'
 import category from '../../constants/category'
+import Header from '../../component/header'
 
 export default class Home extends Component {
 
@@ -25,7 +26,6 @@ export default class Home extends Component {
         let url = 'http://127.0.0.1:8000/api/movie/latest_five_movies/'
         $.get(url, (result) => {
             if (result.status === 200) {
-                console.log(result.data)
                 this.setState({
                     latestMovies: result.data
                 })
@@ -37,27 +37,10 @@ export default class Home extends Component {
         let url = 'http://127.0.0.1:8000/api/movie/top_five_movies/'
         $.get(url, (result) => {
             if (result.status === 200) {
-                console.log(result.data)
                 this.setState({
                     topFiveMovies: result.data
                 })
             }
-        })
-    }
-
-    getSearchMovie(e) {
-        this.setState({
-            searchName: e.target.value.toLowerCase()
-        })
-    }
-
-    searchMovie() {
-        let { searchName } = this.state
-        let movie_name = searchName.split(' ').join('-')
-        let url="http://127.0.0.1:8000/api/movie/" + movie_name + "/"
-        $.get(url, (result) => {
-            console.log(result)
-            // do something
         })
     }
 
@@ -69,8 +52,33 @@ export default class Home extends Component {
 
     }
 
-    goToMovieListByCat(category) {
+    goToMovieDetail(movie_name) {
+        let name = movie_name.toLowerCase().split(' ').join('-')
+        let url="http://127.0.0.1:8000/api/movie/" + name + "/"
+        $.get(url, (result) => {
+            if (result.status === 200) {
+                this.props.history.push({
+                    pathname: '/movie/' + name + '/',
+                    state: {
+                        movie_info: result.data
+                    }
+                })
+            }
+        })
+    }
 
+    goToAboutUs() {
+        this.props.history.push('/about-us/')
+    }
+
+    goToCategory(name) {
+        let categoryName = name.toLowerCase()
+        this.props.history.push({
+            pathname: '/category/' + categoryName + '/',
+            state: {
+                categoryName: name
+            }
+        })
     }
 
 
@@ -79,22 +87,14 @@ export default class Home extends Component {
         return (
             <div>
                 <div className='home-header'>
-                    <div className='home-top'>
-                        <p className='title'>Movie-Maniacs</p>
-                        <div className='search-login-signup'>
-                            <input className='search-input' placeholder='Search Movie' onChange={(e) => this.getSearchMovie(e)} />
-                            <Button className='home-button' onClick={() => this.searchMovie()}>Search</Button>
-                            <Button className='home-button login-btn'>Login</Button>
-                            <Button className='home-button signup-btn'>Signup</Button>
-                        </div>
-                    </div>
+                    <Header />
                     <img src={imagesMap.banner} className='banner' alt='banner' />
                 </div>
                 <div className='home-latest-list'>
                     <p className='title sub-title'>Explore what's streaming</p>
                     <div className='latest-movie-list'>
                         {latestMovies.map((item, index) => (
-                            <div className='movie-detail' key={index}>
+                            <div className='movie-detail' key={index} onClick={() => this.goToMovieDetail(item.movie_name)}>
                                 <img src={item.image} alt='movie-name' height='280' width='200'/>
                                 <p>Name: {item.movie_name}</p>
                                 <p>Director: {item.director}</p>
@@ -108,9 +108,9 @@ export default class Home extends Component {
                     <p className='title sub-title'>Categories</p>
                     <div className='latest-movie-list'>
                         {category.map((item, index) => (
-                            <div className='movie-detail' key={index}>
+                            <div className='movie-detail' key={index} onClick={() => this.goToCategory(item.name)}>
                                 <img src={item.image} alt='movie-name' height='280' width='200'/>
-                                <p className='category-name'><a onClick={() => this.goToMovieListByCat()}>{item.name}</a></p>
+                                <p className='category-name'><a>{item.name}</a></p>
                             </div>
                         ))}
                     </div>
@@ -130,7 +130,7 @@ export default class Home extends Component {
                     </div>
                 </div>
                 <footer className='home-footer'>
-                    <a>--about us--</a>
+                    <a onClick={() => this.goToAboutUs()}>--about us--</a>
                 </footer>
             </div>
         )

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './index.css'
-import { Input, Button } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { MailOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 export default class Login extends Component {
@@ -11,45 +11,91 @@ export default class Login extends Component {
     }
 
 
+    onFinish = (values) => {
+      console.log(values);
+    };
+
   render() {
     return (
-      <div className='login'>
 
-        <div className='loginHeader'>
-          <br />
-          <p>Log in</p>
-        </div>
+      <Form
+      name="login"
+      className="login"
+      onFinish={this.onFinish}
+      >
 
-        <Input
-        size="large"
-        placeholder="Email"
-        prefix={<MailOutlined />}
-        />
-        <br />
-        <br />
-        <Input.Password
-        size="large"
-        placeholder="Password"
-        prefix={<LockOutlined />}
-        iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-        />
+        <Form.Item className="login-header">
+          <br/>
+          Log in
+        </Form.Item>
 
-        <div className='forgetPassword'>
-          <Button type="link">Forget your password?</Button>
-          <br />
-          <br />
-        </div>
+        <Form.Item
+        name="email"
+        rules={[{ required: true, message: 'Please enter your Email!' }]}
+        >
+          <Input prefix={<MailOutlined />} placeholder="Email" />
+        </Form.Item>
 
-        <Button type="primary" size='large' block>Log in</Button>
-        <br />
-        <br />
+        <Form.Item
+        name="password"
+        rules={[{ required: true, message: 'Please enter your Password!' }]}
+        >
+          <Input.Password
+          // type="password"
+          prefix={<LockOutlined />}
+          placeholder="Password"
+          iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+          />
+        </Form.Item>
 
-        <p>
-          Don't have an account?
-          <Button type="link">Sign up.</Button>
-        </p>
+        <Form.Item>
+          <a className="forgot-password" href="">
+            Forgot your password?
+          </a>
+        </Form.Item>
 
-      </div>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" className="login-button">
+            Log in
+          </Button>
+        </Form.Item>
+
+        <Form.Item className="login-signup">
+          Don't have an account? <a href="/signup">Sign up.</a>
+        </Form.Item>
+
+      </Form>
+
+    //   <div className='login'>
+
+    //     <div className='login-header'>
+    //       <br/>
+    //       <p>Log in</p>
+    //     </div>
+
+    //     <Input placeholder="Email" prefix={<MailOutlined />} />
+    //     <br/><br/>
+
+    //     <Input.Password
+    //     placeholder="Password"
+    //     prefix={<LockOutlined />}
+    //     iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+    //     />
+
+    //     <div className='forget-password-link'>
+    //       <Button type="link">Forget your password?</Button>
+    //       <br/><br/>
+    //     </div>
+
+    //     <Button type="primary" block>Log in</Button>
+    //     <br/><br/>
+
+    //     <div>
+    //       Don't have an account?
+    //       <Button type="link">Sign up.</Button>
+    //     </div>
+
+    // </div>
     );
   }
 }
