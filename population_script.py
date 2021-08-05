@@ -357,7 +357,7 @@ def populate():
             'release_date': '2019',
             'length': '2h 2min',
             'rating': 3.4,
-            'image': '../../ media / joker.jpeg',
+            'image': '../../media/joker.jpeg',
             'introduction': "In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: the Joker."
         },
         {
