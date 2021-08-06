@@ -117,7 +117,7 @@ export default class AddMovie extends Component {
             <table class="t">           
                 <tr> 
                   <div class="name">                     
-                    <td>name: </td>
+                    <td>Movie name: </td>
                     <td>
                     <Input placeholder="Movie name" />
                         {/* <!--<input type="text" name="userid" value="" placeholder="登录名"/>--> */}
@@ -160,7 +160,7 @@ export default class AddMovie extends Component {
                     </Select>
                     </td> 
                     &nbsp;
-                    <td>Country Of Production: </td>
+                    <td>Country of Production: </td>
                     <td>
                     <Input placeholder="Country" />
                         {/* <input type="text" name="country" value=""/> */}
@@ -172,7 +172,7 @@ export default class AddMovie extends Component {
                         {/* <input type="text" name="language" value=""/> */}
                     </td> 
                     &nbsp;
-                    <td>Release Data: </td>
+                    <td>Release Date: </td>
                     <td>
                     <Space direction="vertical">
                     <DatePicker onChange={onChange1} />
