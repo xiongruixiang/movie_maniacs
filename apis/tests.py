@@ -2,7 +2,7 @@
 # Unit Tests
 # By Team: Hello World
 #
-# In order to run these tests, please run $ python manage.py migrat
+# In order to run these tests, please run $ python manage.py test
 #
 
 from django.test import TestCase
