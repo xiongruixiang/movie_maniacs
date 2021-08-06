@@ -12,7 +12,7 @@ export default class Movie extends Component {
   render() {
     return (
       <div>
-          Movie
+        Movie
       </div>
     )
   }

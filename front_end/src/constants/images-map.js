@@ -7,7 +7,6 @@ import horrorImg from '../static/images/horror.jpeg'
 import actionImg from '../static/images/action.jpeg'
 import crimeImg from '../static/images/crime.jpeg'
 
-
 const imagesMap = {
     rango: rangoImg,
     banner,

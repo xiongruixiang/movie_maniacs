@@ -1,3 +1,10 @@
+#
+# Unit Tests
+# By Team: Hello World
+#
+# In order to run these tests, please run $ python manage.py migrat
+#
+
 from django.test import TestCase
 from apis.models import Category, Review, User, Movie
 

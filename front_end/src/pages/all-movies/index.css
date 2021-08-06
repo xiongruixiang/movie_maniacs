@@ -3,19 +3,23 @@
     flex-wrap: wrap;
     margin-left: 40px;
 }
+
 .each-movie-detail {
     display: flex;
     flex-direction: column;
     cursor: pointer;
     margin: 40px;
 }
+
 .each-movie-detail:hover {
     background-color: #cccccc;
     opacity: 0.7;
 }
+
 .each-movie-detail img {
     margin-bottom: 10px;
 }
+
 .each-movie-detail p {
     font-weight: bold;
 }

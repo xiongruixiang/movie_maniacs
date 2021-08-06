@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './index.css'
 import Header from '../../component/header'
 import {Rate, Empty} from "antd";
-import $ from "jquery";
 
 export default class SearchResult extends Component {
 

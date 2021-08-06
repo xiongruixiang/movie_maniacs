@@ -35,8 +35,6 @@ export default class About extends Component {
           If you have any questions, please do not hesitate to contact us!
       </div>
 
-
-
       </html>
     );
   }

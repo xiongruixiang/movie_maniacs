@@ -72,7 +72,6 @@ class Avatar extends React.Component {
 
 const { TextArea } = Input;
 
-
 function onChange1(date, dateString) {
   console.log(date, dateString);
 }
@@ -91,8 +90,6 @@ function onSearch(val) {
   console.log('search:', val);
 }
 
-
-
 export default class AddMovie extends Component {
 
     constructor(props) {
@@ -110,9 +107,9 @@ export default class AddMovie extends Component {
       </div>
 
       <PageHeader
-    className="site-page-header"
-    onBack={() => window.history.back()}
-    title="Back"/>
+      className="site-page-header"
+      onBack={() => window.history.back()}
+      title="Back"/>
 
       {/* action添加服务器 */}
       <form action=" " method="get">
@@ -201,10 +198,8 @@ export default class AddMovie extends Component {
                   <Avatar />
                 </div>
 
-               
-                
             </table>
-                
+
         </form>
 
         <div class="addMovie">
@@ -213,9 +208,7 @@ export default class AddMovie extends Component {
              </form>
         </div>
 
-
       </html>
-
     );
   }
 }

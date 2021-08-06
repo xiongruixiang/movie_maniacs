@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './index.css'
 import imagesMap from '../../constants/images-map'
-import {Button, Rate} from "antd";
+import {Rate} from "antd";
 import $ from 'jquery'
 import category from '../../constants/category'
 import Header from '../../component/header'
