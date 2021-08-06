@@ -30,16 +30,11 @@ export default class Category extends Component {
     }
 
     goToMovieDetail(movie_name) {
-        let name = movie_name.toLowerCase().split(' ').join('-')
-        let url="http://127.0.0.1:8000/api/movie/" + name + "/"
-        $.get(url, (result) => {
-            if (result.status === 200) {
-                this.props.history.push({
-                    pathname: '/movie/' + name + '/',
-                    state: {
-                        movie_info: result.data
-                    }
-                })
+        let movie_name_slug = movie_name.toLowerCase().split(' ').join('-')
+        this.props.history.push({
+            pathname: '/movie/' + movie_name_slug + '/',
+            state: {
+                movie_name_slug: movie_name_slug
             }
         })
     }

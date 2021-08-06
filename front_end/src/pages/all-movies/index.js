@@ -49,7 +49,7 @@ export default class AllMovies extends Component {
                     {movieList.map((item, index) => (
                         <div className='each-movie-detail' key={index}
                              onClick={() => this.goToMovieDetail(item.movie_name)}>
-                            <img src={item.image} alt='movie-name' height='280' width='200'/>
+                            <img src={item.image} alt='movie-name' height='310' width='220'/>
                             <p>Name: {item.movie_name}</p>
                             <p>Director: {item.director}</p>
                             <p>Rating: <span className='rating'>{item.rating}</span></p>

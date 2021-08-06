@@ -12,22 +12,14 @@ export default class SearchResult extends Component {
     }
 
     goToMovieDetail(movie_name) {
-        let name = movie_name.toLowerCase().split(' ').join('-')
-        let url = "http://127.0.0.1:8000/api/movie/" + name + "/"
-        $.get(url, (result) => {
-            if (result.status === 200) {
-                this.props.history.push({
-                    pathname: '/movie/' + name + '/',
-                    state: {
-                        movie_info: result.data,
-                        review: result.review,
-                        user: result.user
-                    }
-                })
+        let movie_name_slug = movie_name.toLowerCase().split(' ').join('-')
+        this.props.history.push({
+            pathname: '/movie/' + movie_name_slug + '/',
+            state: {
+                movie_name_slug: movie_name_slug
             }
         })
     }
-
 
     render() {
         let {searchValue, searchResult, message} = this.props.location.state
@@ -37,7 +29,7 @@ export default class SearchResult extends Component {
                 <p className='title sub-title'>The search results for "{searchValue}"</p>
                 {Object.keys(searchResult).length === 0 ? (
                     <div className='empty-show'>
-                        <Empty description={false} imageStyle={{ height: 200, width: 200 }} />
+                        <Empty description={false} imageStyle={{height: 200, width: 200}}/>
                         <p className='message'>{message}</p>
                     </div>
                 ) : (
