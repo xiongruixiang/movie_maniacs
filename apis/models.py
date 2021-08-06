@@ -19,6 +19,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_category_slug_name(self):
+        return self.slug
+
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
 
@@ -29,6 +32,9 @@ class Review(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def get_review_content(self):
+        return self.content
 
 class Movie(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -53,3 +59,9 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.movie_name
+
+    def get_rating(self):
+        return self.rating
+
+    def get_category(self):
+        return self.category.name
