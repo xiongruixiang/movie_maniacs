@@ -21,6 +21,30 @@ def populate():
             'introduction': 'Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.'
         },
         {
+            'movie_name': 'La vita è bella',
+            'director': 'Roberto Benigni',
+            'leading_actor': 'Roberto Benigni & Nicoletta Braschi',
+            'country_of_production': 'Italy',
+            'language': 'English',
+            'release_data': '1997',
+            'length': '1h 56min',
+            'rating': 3.6,
+            'image': '../../media/la-vita-è-bella.jpeg',
+            'introduction': 'In 1930s Italy, a carefree Jewish waiter named Guido starts a fairy tale life by courting and marrying a lovely woman from a nearby city. Guido and his wife have a son and live happily together until the occupation of Italy by German forces. In an attempt to hold his family together and help his son survive the horrors of a Jewish Concentration Camp, Guido imagines that the Holocaust is a game and that the grand prize for winning is a tank.'
+        },
+        {
+            'movie_name': 'Yes, Minister: Party Games',
+            'director': 'Peter Whitmore',
+            'leading_actor': 'Pail Eddington & Nigel Hawthorne',
+            'country_of_production': 'United Kingdom',
+            'release_data': '1984',
+            'language': 'English',
+            'length': '1h 1min',
+            'rating': 4.2,
+            'image': '../../media/yes-minister-party-games.jpeg',
+            'introduction': 'Sitcom about a British government minister and the advisers who surround him. The seasonal festivities at the Department of Administrative Affairs are overshadowed by rumours of a cabinet reshuffle. But a leadership election and the Eurosausage affair could lead to great things for Jim Hacker.'
+        },
+        {
             'movie_name': 'Cruella',
             'director': 'Craig Gillespie',
             'leading_actor': 'Emma Stone & Joel Fry',
